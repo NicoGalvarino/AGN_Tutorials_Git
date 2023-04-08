@@ -1,0 +1,9 @@
+blackbody, T=1e5 K
+luminosity total 38
+radius 18
+hden 5
+sphere
+abundances planetary nebula
+iterate
+save overview "cloud_PNe.ovr"
+save continuum "cloud_PNe.con" units microns last

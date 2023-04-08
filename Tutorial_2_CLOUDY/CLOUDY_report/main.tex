@@ -1,0 +1,124 @@
+% Template:     Template Auxiliar LaTeX
+% Documento:    Archivo principal
+% Versión:      7.1.5 (15/03/2021)
+% Codificación: UTF-8
+%
+% Autor: Pablo Pizarro R.
+%        Facultad de Ciencias Físicas y Matemáticas
+%        Universidad de Chile
+%        pablo@ppizarror.com
+%
+% Sitio web:    [https://latex.ppizarror.com/auxiliares]
+% Licencia MIT: [https://opensource.org/licenses/MIT]
+
+% CREACIÓN DEL DOCUMENTO
+\documentclass[letterpaper, oneside]{article}
+
+% INFORMACIÓN DEL DOCUMENTO
+\def\tituloauxiliar {CLOUDY: Modelling Gaseous Nebulae}
+\def\temaatratar {Tutorial \#2}
+
+\def\autordeldocumento {Nicolás Guerra-Varas}
+\def\nombredelcurso {CLASS}
+\def\codigodelcurso {MASS}
+
+\def\nombreuniversidad {University of Belgrade}
+\def\nombrefacultad {Faculty of Mathematics}
+\def\departamentouniversidad {Departament of Astronomy}
+\def\imagendepartamento {img/mass}
+\def\imagendepartamentoparams {height=1.9cm}
+\def\localizacionuniversidad {Belgrade, Serbia}
+
+% EQUIPO DOCENTE
+\def\equipodocente {
+	\textbf{Nicolás Guerra-Varas} \\
+	Professor Dragana Ili\'c \\
+	Tutor Isidora Jankov \\
+    \today \\
+%    \multicolumn{2}{l}{\today} \\
+	% \multicolumn{2}{l}{\localizacionuniversidad}
+}
+
+% IMPORTACIÓN DEL TEMPLATE
+\input{template}
+
+% INICIO DE PÁGINAS
+\begin{document}
+	
+% CONFIGURACIÓN DE PÁGINA Y ENCABEZADOS
+\templatePagecfg
+
+% ----------------------------------------------------------------------------
+
+The goal of this tutorial was to learn how to use \texttt{CLOUDY} \cite{cloudy_gitlab, Ferland_1998, Ferland_2003}, which is a code that is capable of modeling gaseous nebulae of different kinds, such as stars, planetary nebulae (PNe) and quasars (QSOs).
+
+\section{Planetary Nebulae}
+
+First, I ran a simulation of a simple PN with the following specifications, found in the \texttt{CLOUDY} Quick Start Guide (see files \texttt{cloud\_solar.in}, \texttt{cloud\_PNe.in}):
+\begin{itemize}
+	\item The continumm has the shape of a blackbody (BB) with temperature $10^5$ K, and a luminosity of $10^{38}$ erg s$^{-1}$.
+	
+	\item The shell of the PN has a radius of $10^{18}$ cm (0.32 pc), and a hydrogen density of $10^5$ cm${-3}$.
+	
+	\item The gas covers up the whole central star.
+	
+\end{itemize}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.1\textwidth]{../spec_clouds_solar_PNe_full_range.pdf}
+	\caption{ Modeled spectra for clouds with solar and PNe abundances.}
+	\label{fig:spectra_solar_PNe_full}
+\end{figure}
+
+I set up this simulation to iterate, and set to save the initial and last iterations in the output and overview files. I ran it for a solar abundance and for a typical PN abundance. The obtained spectra are shown in Figure \ref{fig:spectra_solar_PNe_full}. They have two main differences:
+\begin{enumerate}
+	\item Around 10-100 $\mu$m, the cloud with solar abundance has a straight continumm whilst the one with a PN abundance has a curved continumm, very similar to a BB. This is because the PN abundance takes dust into acount, which produces thermal dust emission and behaves as a BB.
+	
+	\item Between 0.01 and 0.1 they have similar features, but the cloud with solar abundance has larger flux. This wavelength lies in the ultra-violet (UV) range. This difference might be because the cloud with solar abundance resembles a star more than the cloud with PN abundance, and stars have brighter emission in the UV due to the ongoing hydrogen burning inside them. On the other hand, the PN is mostly made of ionized gas coming from red giants, which are in a late stage of stellar evolution and have left the Main Sequence, so their UV radiation is dimmer.
+	
+\end{enumerate}
+
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[width=1.1\textwidth]{../spec_clouds_solar_PNe.pdf}
+%	\caption{Modeled spectra for clouds with solar and PNe abundances.}
+%	\label{fig:spectra_solar_PNe}
+%\end{figure}
+
+
+
+\section{Quasar}
+
+Next, I modeled the broad line region (BLR) and the obtained spectrum is shown in Figure \ref{fig:spectrum_qso_blr} (see file \texttt{cloud\_qso\_blr.in}). As found in the \texttt{CLOUDY} Quick Start Guide, I chose the power law used to describe the continumm of these regions, where the logarithm of the flux of H-ionizing photons is 18.5. The hydrogen density was $10^10$ cm${-3}$ and its column density was $10^22$ cm${-2}$. I set up the input to iterate until it converged the optical depths, and it ran for four iterations.
+
+Even though this is a BLR, the lines in Figure \ref{fig:spectrum_qso_blr} do not appear broad. This is because \texttt{CLOUDY} is able to model them without taking the broadening effects into effect, allowing for a much more detailed spectrum to be obtained.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.1\textwidth]{../spec_qso_blr.pdf}
+	\caption{Modeled spectra for the BLR of a QSO.}
+	\label{fig:spectrum_qso_blr}
+\end{figure}
+
+
+
+\section{Temperature of the Planetary Nebulae}
+
+Finally, I plotted the gas temperature of the PNe from the overview file of the simulation (see Figure \ref{fig:Tgas_solar_PNe}). The overview file had two tables, one per iteration, corresponding to the ones in the output file. I plotted each of them and saw that both iterations provided the same curve and they lie right below each other.
+
+In this plot, we see that further out from the center, the gas is colder, which is expected and intuitive. The cloud with solar abundances is colder throughout. Maybe this is because the gas of the PN is being ejected from the hot central star, so the gas keeps its temperature at a larger distance from the center.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../spec_Tgas.pdf}
+	\caption{Gas temperature of the PNe.}
+	\label{fig:Tgas_solar_PNe}
+\end{figure}
+
+% ----------------------------------------------------------------------------
+
+\bibliographystyle{natbib}
+\bibliography{references}
+
+\end{document}

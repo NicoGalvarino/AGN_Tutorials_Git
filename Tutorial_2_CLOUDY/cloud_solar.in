@@ -1,0 +1,9 @@
+blackbody, T=1e5 K
+luminosity total 38
+radius 18
+hden 5
+sphere
+# solar abundances by default
+iterate
+save overview "cloud_solar.ovr"
+save continuum "cloud_solar.con" units microns last

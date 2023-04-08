@@ -1,0 +1,52 @@
+This is BibTeX, Version 0.99d (TeX Live 2020)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: ieeetr.bst
+Illegal, another \bibstyle command---line 29 of file main.aux
+ : \bibstyle
+ :          {natbib}
+I'm skipping whatever remains of this command
+Database file #1: references.bib
+Warning--empty journal in Ferland_1998
+You've used 3 entries,
+            1876 wiz_defined-function locations,
+            497 strings with 3935 characters,
+and the built_in function-call counts, 798 in all, are:
+= -- 79
+> -- 25
+< -- 0
++ -- 10
+- -- 7
+* -- 58
+:= -- 112
+add.period$ -- 3
+call.type$ -- 3
+change.case$ -- 3
+chr.to.int$ -- 0
+cite$ -- 4
+duplicate$ -- 36
+empty$ -- 75
+format.name$ -- 7
+if$ -- 194
+int.to.chr$ -- 0
+int.to.str$ -- 3
+missing$ -- 2
+newline$ -- 12
+num.names$ -- 2
+pop$ -- 11
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 34
+stack$ -- 0
+substring$ -- 60
+swap$ -- 17
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 1
+while$ -- 7
+width$ -- 4
+write$ -- 28
+(There was 1 error message)

@@ -1,2 +1,3 @@
-# AGN_Tutorials_Git
-Intro. to AGN course in University of Belgrade
+# AGN Tutorials Repository
+
+Tutorial for the intro. to AGN course in University of Belgrade, Serbia, Spring 2023

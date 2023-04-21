@@ -1,0 +1,89 @@
+% Template:     Template Auxiliar LaTeX
+% Documento:    Archivo principal
+% Versión:      7.1.5 (15/03/2021)
+% Codificación: UTF-8
+%
+% Autor: Pablo Pizarro R.
+%        Facultad de Ciencias Físicas y Matemáticas
+%        Universidad de Chile
+%        pablo@ppizarror.com
+%
+% Sitio web:    [https://latex.ppizarror.com/auxiliares]
+% Licencia MIT: [https://opensource.org/licenses/MIT]
+
+% CREACIÓN DEL DOCUMENTO
+\documentclass[letterpaper, oneside]{article}
+
+% INFORMACIÓN DEL DOCUMENTO
+\def\tituloauxiliar {How to Find a Quasar?}
+\def\temaatratar {Tutorial \#4}
+
+\def\autordeldocumento {Nicolás Guerra-Varas}
+\def\nombredelcurso {Introduction to AGN}
+\def\codigodelcurso {MASS}
+
+\def\nombreuniversidad {University of Belgrade}
+\def\nombrefacultad {Faculty of Mathematics}
+\def\departamentouniversidad {Departament of Astronomy}
+\def\imagendepartamento {img/mass}
+\def\imagendepartamentoparams {height=1.9cm}
+\def\localizacionuniversidad {Belgrade, Serbia}
+
+% EQUIPO DOCENTE
+\def\equipodocente {
+	\textbf{Nicolás Guerra-Varas} \\
+	Professor Dragana Ili\'c \\
+	Tutor Isidora Jankov \\
+    \today \\
+%    \multicolumn{2}{l}{\today} \\
+	% \multicolumn{2}{l}{\localizacionuniversidad}
+}
+
+% IMPORTACIÓN DEL TEMPLATE
+\input{template}
+
+% INICIO DE PÁGINAS
+\begin{document}
+	
+% CONFIGURACIÓN DE PÁGINA Y ENCABEZADOS
+\templatePagecfg
+
+% ----------------------------------------------------------------------------
+
+The goal of this tutorial was to ...
+
+
+\section*{Part I}
+
+
+
+\begin{sourcecode}[\label{cross_id_sql}]{sql}{SQL Query for the QSO Sample}
+SELECT oiii_5007_flux, h_alpha_flux, h_beta_flux, nii_6584_flux
+
+FROM GalSpecLine AS g JOIN SpecObj AS s ON
+g.specobjid = s.specobjid
+
+WHERE
+(s.class = 'QSO' or s.class = 'GALAXY')
+AND 2.355 * g.sigma_balmer < 500
+AND 2.355 * g.sigma_forbidden < 500
+AND s.snmedian_g > 40
+AND g.oiii_5007_flux > 5
+AND (g.oiii_5007_flux / g.oiii_5007_flux_err) > 5
+AND g.h_alpha_flux > 5
+AND (g.h_alpha_flux / g.h_alpha_flux_err) > 5
+AND g.h_beta_flux > 5
+AND (g.h_beta_flux / g.h_beta_flux_err) > 5
+AND g.nii_6584_flux > 5
+AND (g.nii_6584_flux / g.nii_6584_flux_err) > 5
+
+\end{sourcecode}
+
+\section*{Part II}
+
+% ----------------------------------------------------------------------------
+
+\bibliographystyle{natbib}
+\bibliography{references}
+
+\end{document}

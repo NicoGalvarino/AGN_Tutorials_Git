@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  25 APR 2023 23:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  26 APR 2023 00:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1353,31 +1353,23 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 LaTeX Warning: Citation `wise_allsky' on page 1 undefined on input line 88.
 
-
-LaTeX Warning: Reference `BPT_subclasses' on page 1 undefined on input line 88.
-
-
 [1
 
 
 {/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./img/m
 ass.png>]
-<../BPT_diagram_sdss_subclasses.pdf, id=48, 722.7pt x 578.16pt>
+<../BPT_diagram_sdss_subclasses.pdf, id=49, 722.7pt x 578.16pt>
 File: ../BPT_diagram_sdss_subclasses.pdf Graphic file (type pdf)
 <use ../BPT_diagram_sdss_subclasses.pdf>
 Package pdftex.def Info: ../BPT_diagram_sdss_subclasses.pdf  used on input line
  92.
-(pdftex.def)             Requested size: 422.77698pt x 338.21782pt.
+(pdftex.def)             Requested size: 516.73378pt x 413.39009pt.
 
+Overfull \hbox (46.9784pt too wide) in paragraph at lines 92--93
+ [][] 
+ []
 
-LaTeX Warning: Reference `flux_distributions' on page 2 undefined on input line
- 97.
-
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `H') on input line 99.
-
-<../distr_h_alpha_flux.pdf, id=49, 361.35pt x 361.35pt>
+<../distr_h_alpha_flux.pdf, id=51, 361.35pt x 361.35pt>
 File: ../distr_h_alpha_flux.pdf Graphic file (type pdf)
 <use ../distr_h_alpha_flux.pdf>
 Package pdftex.def Info: ../distr_h_alpha_flux.pdf  used on input line 103.
@@ -1390,64 +1382,89 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5.13335> on input line 104.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <3.66669> on input line 104.
-<../distr_h_beta_flux.pdf, id=50, 361.35pt x 361.35pt>
+<../distr_h_beta_flux.pdf, id=52, 361.35pt x 361.35pt>
 File: ../distr_h_beta_flux.pdf Graphic file (type pdf)
 <use ../distr_h_beta_flux.pdf>
 Package pdftex.def Info: ../distr_h_beta_flux.pdf  used on input line 110.
 (pdftex.def)             Requested size: 223.13667pt x 223.13594pt.
-<../distr_nii_6584_flux.pdf, id=51, 361.35pt x 361.35pt>
+<../distr_nii_6584_flux.pdf, id=53, 361.35pt x 361.35pt>
 File: ../distr_nii_6584_flux.pdf Graphic file (type pdf)
 <use ../distr_nii_6584_flux.pdf>
 Package pdftex.def Info: ../distr_nii_6584_flux.pdf  used on input line 117.
 (pdftex.def)             Requested size: 223.13667pt x 223.13594pt.
-<../distr_oiii_5007_flux.pdf, id=52, 361.35pt x 361.35pt>
+<../distr_oiii_5007_flux.pdf, id=54, 361.35pt x 361.35pt>
 File: ../distr_oiii_5007_flux.pdf Graphic file (type pdf)
 <use ../distr_oiii_5007_flux.pdf>
 Package pdftex.def Info: ../distr_oiii_5007_flux.pdf  used on input line 124.
 (pdftex.def)             Requested size: 223.13667pt x 223.13594pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: Citation `Wright_2010' on page 2 undefined on input line 138.
+
+
+LaTeX Warning: Citation `Jarrett_2017' on page 2 undefined on input line 142.
+
+<../wise_color_color.pdf, id=56, 722.7pt x 578.16pt>
+File: ../wise_color_color.pdf Graphic file (type pdf)
+<use ../wise_color_color.pdf>
+Package pdftex.def Info: ../wise_color_color.pdf  used on input line 146.
+(pdftex.def)             Requested size: 516.73378pt x 413.39009pt.
+
+Overfull \hbox (46.9784pt too wide) in paragraph at lines 146--147
+ [][] 
+ []
+
+[2 <../BPT_diagram_sdss_subclasses.pdf>]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 (./main.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 155.
- [2 <../BPT_diagram_sdss_subclasses.pdf>]
-LaTeX Info: Redefining \. on input line 155.
-LaTeX Info: Redefining \% on input line 155.
- [3 <../distr_h_alpha_flux.pdf> <../distr_h_beta_flux.pdf> <../distr_nii_6584_f
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 160.
+ [3]
+LaTeX Info: Redefining \. on input line 160.
+LaTeX Info: Redefining \% on input line 160.
+ [4 <../distr_h_alpha_flux.pdf> <../distr_h_beta_flux.pdf> <../distr_nii_6584_f
 lux.pdf> <../distr_oiii_5007_flux.pdf>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 155.
+LaTeX Info: Redefining \. on input line 160.
+LaTeX Info: Redefining \% on input line 160.
+ [5 <../wise_color_color.pdf>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 160.
  (./main.aux
 LaTeX Info: Redefining \. on input line 27.
 LaTeX Info: Redefining \% on input line 27.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 155.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 155.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 160.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 160.
 
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 26151 strings out of 480608
- 388169 string characters out of 5903631
- 1100864 words of memory out of 5000000
- 41461 multiletter control sequences out of 15000+600000
+ 26159 strings out of 480608
+ 388352 string characters out of 5903631
+ 1100723 words of memory out of 5000000
+ 41466 multiletter control sequences out of 15000+600000
  632172 words of font info for 134 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 48i,13n,103p,2881b,2055s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 48i,13n,103p,2881b,2168s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/lo
 cal/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</usr/local/texlive/20
 20/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2020/texmf-d
-ist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2020/texmf-dist/fonts/
-type1/public/lm/lmmi7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/publi
-c/lm/lmr10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/lm/lmr12.
-pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/l
-ocal/texlive/2020/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive
-/2020/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2020/texmf-
-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2020/texmf-dist/fonts
-/type1/public/lm/lmro12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/pub
-lic/lm/lmvtt10.pfb>
-Output written on main.pdf (3 pages, 479608 bytes).
+ist/fonts/type1/public/lm/lmmi7.pfb></usr/local/texlive/2020/texmf-dist/fonts/t
+ype1/public/lm/lmr10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public
+/lm/lmr12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/lm/lmr17.p
+fb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/loc
+al/texlive/2020/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2
+020/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2020/texmf-
+dist/fonts/type1/public/lm/lmro12.pfb></usr/local/texlive/2020/texmf-dist/fonts
+/type1/public/lm/lmvtt10.pfb>
+Output written on main.pdf (5 pages, 576160 bytes).
 PDF statistics:
- 349 PDF objects out of 1000 (max. 8388607)
- 165 compressed objects within 2 object streams
- 39 named destinations out of 1000 (max. 500000)
- 51 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 404 PDF objects out of 1000 (max. 8388607)
+ 175 compressed objects within 2 object streams
+ 41 named destinations out of 1000 (max. 500000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
 

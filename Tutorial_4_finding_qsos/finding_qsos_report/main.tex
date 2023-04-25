@@ -85,18 +85,18 @@ AND g.nii_6584_flux > 5
 AND (g.nii_6584_flux / g.nii_6584_flux_err) > 5
 \end{sourcecode}
 
-This query defines the sample, gets the spectroscopic information on the needed lines and gets the colours from the WISE catalogue \cite{wise_allsky}. This query resulted in 960 objects. I checked their spectroscopic subclasses and saw that 163 objects are classified as starburst galaxies, 319 as broadline, 71 as AGN broadline, 214 as starforming, 29 as starforming broadline, 84 as AGN, one as starburst broadline, and the rest had no sub-classification. I plotted a BPT diagram (see Section \ref{bpt_diagram_section}) with the spectroscopic subclasses from SDSS as the style of the data points in Figure \ref{BPT_subclasses}. The trends of the different classes are already visible.
+This query defines the sample, gets the spectroscopic information on the needed lines and gets the colours from the WISE catalogue \cite{wise_allsky}. This query resulted in 960 objects. I checked their spectroscopic subclasses and saw that 163 objects are classified as starburst galaxies, 319 as broadline, 71 as AGN broadline, 214 as starforming, 29 as starforming broadline, 84 as AGN, one as starburst broadline, and the rest had no sub-classification. I plotted a BPT diagram (see Section \ref{bpt_diagram_section}) with the spectroscopic subclasses from SDSS as the style of the data points in Figure \ref{fig:BPT_subclasses}. The trends of the different classes are already visible.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.9\textwidth]{../BPT_diagram_sdss_subclasses.pdf}
+	\includegraphics[width=1.1\textwidth]{../BPT_diagram_sdss_subclasses.pdf}
 	\caption{BPT Diagram with SDSS subclasses.}
 	\label{fig:BPT_subclasses}
 \end{figure}
 
-I also plotted the distributions of the relevant spectral line fluxes (see Figure \ref{flux_distributions}).
+I also plotted the distributions of the relevant spectral line fluxes (see Figure \ref{fig:flux_distributions}).
 
-\begin{figure*}[]
+\begin{figure*}[h]
 	\centering
 	\begin{subfigure}[b]{0.475\textwidth}
 		\centering
@@ -135,13 +135,18 @@ I also plotted the distributions of the relevant spectral line fluxes (see Figur
 
 \section{Part II}
 
-\subsection{Colours from WISE}
+I downloaded the WISE colours \cite{Wright_2010} using the same SQL as the first part \ref{sdss_query}.
 
-I downloaded the WISE colours using the same SQL as the first part \ref{sdss_query}.
+\subsection{WISE Colour-Colour Diagram}
 
-\subsection{Classification with WISE Colour-Colour Diagram}
+\cite{Jarrett_2017}
 
-
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.1\textwidth]{../wise_color_color.pdf}
+	\caption{WISE colour-colour diagram.}
+	\label{fig:wise_colours}
+\end{figure}
 
 \subsection{Analysing a Particular Object}
 

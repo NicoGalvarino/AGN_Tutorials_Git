@@ -55,9 +55,11 @@ The goal of this tutorial was to ...
 
 \section*{Part I}
 
+\subsection{Getting the Data}
 
+First of all, I downloaded the data from SDSS DR18 \citep{sdss_dr18} using the following SQL query:
 
-\begin{sourcecode}[\label{cross_id_sql}]{sql}{SQL Query for the QSO Sample}
+\begin{sourcecode}[\label{sdss_query}]{sql}{SQL Query to Define the QSO Sample}
 SELECT s.specobjid, s.plate, s.mjd, s.fiberID, s.subclass, s.z, 
 g.oiii_5007_flux, g.oiii_5007_flux_err, 
 g.h_alpha_flux, g.h_alpha_flux_err, 
@@ -68,7 +70,7 @@ FROM GalSpecLine AS g JOIN SpecObj AS s ON
 g.specobjid = s.specobjid
 
 WHERE
-(s.class = `QSO' or s.class = `GALAXY')
+(s.class = 'QSO' or s.class = 'GALAXY')
 AND 2.355 * g.sigma_balmer < 500
 AND 2.355 * g.sigma_forbidden < 500
 AND s.snmedian_g > 40
@@ -80,10 +82,44 @@ AND g.h_beta_flux > 5
 AND (g.h_beta_flux / g.h_beta_flux_err) > 5
 AND g.nii_6584_flux > 5
 AND (g.nii_6584_flux / g.nii_6584_flux_err) > 5
-
 \end{sourcecode}
 
+This query resulted in 974 objects. I checked their spectroscopic subclasses and saw that 163 objects are classified as starburst galaxies, 319 as broadline, 71 as AGN broadline, 214 as starforming, 29 as starforming broadline, 84 as AGN, one as starburst broadline, and the rest had no sub-classification.
+
+
+
+% ----------------------------------------------------------------------------
+
 \section*{Part II}
+
+\subsection{Cross-Match with WISE}
+
+\begin{sourcecode}[\label{cross_id_wise}]{sql}{SQL Query for WISE}
+SELECT count(*)--s.specobjid, s.plate, s.mjd, s.fiberID, 
+--W.w1mpro as w1, W.w2mpro as w2, W.w3mpro as w3
+
+--FROM GalSpecLine AS g 
+--JOIN SpecObj AS s ON g.specobjid = s.specobjid
+
+FROM SpecObj AS s
+JOIN GalSpecLine AS g ON g.specobjid = s.specobjid
+JOIN wise_xmatch AS x ON s.specobjid = x.sdss_objid
+JOIN wise_allsky AS w ON w.cntr = x.wise_cntr
+
+WHERE
+(s.class = 'QSO' or s.class = 'GALAXY')
+AND 2.355 * g.sigma_balmer < 500
+--AND 2.355 * g.sigma_forbidden < 500
+AND s.snmedian_g > 40
+AND g.oiii_5007_flux > 5
+AND (g.oiii_5007_flux / g.oiii_5007_flux_err) > 5
+AND g.h_alpha_flux > 5
+AND (g.h_alpha_flux / g.h_alpha_flux_err) > 5
+AND g.h_beta_flux > 5
+AND (g.h_beta_flux / g.h_beta_flux_err) > 5
+AND g.nii_6584_flux > 5
+AND (g.nii_6584_flux / g.nii_6584_flux_err) > 5
+\end{sourcecode}
 
 % ----------------------------------------------------------------------------
 

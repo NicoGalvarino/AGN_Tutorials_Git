@@ -85,9 +85,51 @@ AND g.nii_6584_flux > 5
 AND (g.nii_6584_flux / g.nii_6584_flux_err) > 5
 \end{sourcecode}
 
-This query defines the sample, gets the spectroscopic information on the needed lines and gets the colours from the WISE catalogue \cite{wise_allsky}. This query resulted in 960 objects. I checked their spectroscopic subclasses and saw that 163 objects are classified as starburst galaxies, 319 as broadline, 71 as AGN broadline, 214 as starforming, 29 as starforming broadline, 84 as AGN, one as starburst broadline, and the rest had no sub-classification.
+This query defines the sample, gets the spectroscopic information on the needed lines and gets the colours from the WISE catalogue \cite{wise_allsky}. This query resulted in 960 objects. I checked their spectroscopic subclasses and saw that 163 objects are classified as starburst galaxies, 319 as broadline, 71 as AGN broadline, 214 as starforming, 29 as starforming broadline, 84 as AGN, one as starburst broadline, and the rest had no sub-classification. I plotted a BPT diagram (see Section \ref{bpt_diagram_section}) with the spectroscopic subclasses from SDSS as the style of the data points in Figure \ref{BPT_subclasses}. The trends of the different classes are already visible.
 
-\subsection{BPT Diagram}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{../BPT_diagram_sdss_subclasses.pdf}
+	\caption{BPT Diagram with SDSS subclasses.}
+	\label{fig:BPT_subclasses}
+\end{figure}
+
+I also plotted the distributions of the relevant spectral line fluxes (see Figure \ref{flux_distributions}).
+
+\begin{figure*}[]
+	\centering
+	\begin{subfigure}[b]{0.475\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{../distr_h_alpha_flux.pdf}
+		\caption[]{Distribution of H$\alpha$ fluxes.}
+		\label{fig:distr_h_alpha}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.475\textwidth} 
+		\centering 
+		\includegraphics[width=\textwidth]{../distr_h_beta_flux.pdf}
+		\caption[]{Distribution of H$\beta$ fluxes.}
+		\label{fig:distr_h_beta}
+	\end{subfigure}
+	\vskip\baselineskip
+	\begin{subfigure}[b]{0.475\textwidth}   
+		\centering 
+		\includegraphics[width=\textwidth]{../distr_nii_6584_flux.pdf}
+		\caption[]{Distribution of [NII] fluxes.}
+		\label{fig:distr_nii}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.475\textwidth}   
+		\centering 
+		\includegraphics[width=\textwidth]{../distr_oiii_5007_flux.pdf}
+		\caption[]{Distribution of [OIII] fluxes.}
+		\label{fig:distr_oiii}
+	\end{subfigure}
+	\caption{Distribution of the fluxes of the relevant spectral lines.} 
+	\label{fig:flux_distributions}
+\end{figure*}
+
+\subsection{BPT Diagram}\label{bpt_diagram_section}
 
 % ----------------------------------------------------------------------------
 

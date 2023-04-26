@@ -1,0 +1,32 @@
+\begin{thebibliography}{1}
+
+\bibitem{sdss_dr18}
+``Sdss sky server.'' \url{https://skyserver.sdss.org/dr18}, Date of access:
+  April 2023.
+
+\bibitem{wise_allsky}
+``Wise all sky catalogue.''
+  \url{https://wise2.ipac.caltech.edu/docs/release/allsky/}, Date of access:
+  April 2023.
+
+\bibitem{Wright_2010}
+E.~L. {Wright}, P.~R.~M. {Eisenhardt}, A.~K. {Mainzer}, M.~E. {Ressler}, R.~M.
+  {Cutri}, T.~{Jarrett}, J.~D. {Kirkpatrick}, D.~{Padgett}, R.~S. {McMillan},
+  M.~{Skrutskie}, S.~A. {Stanford}, M.~{Cohen}, R.~G. {Walker}, J.~C. {Mather},
+  D.~{Leisawitz}, I.~{Gautier}, Thomas~N., I.~{McLean}, D.~{Benford}, C.~J.
+  {Lonsdale}, A.~{Blain}, B.~{Mendez}, W.~R. {Irace}, V.~{Duval}, F.~{Liu},
+  D.~{Royer}, I.~{Heinrichsen}, J.~{Howard}, M.~{Shannon}, M.~{Kendall}, A.~L.
+  {Walsh}, M.~{Larsen}, J.~G. {Cardon}, S.~{Schick}, M.~{Schwalm}, M.~{Abid},
+  B.~{Fabinsky}, L.~{Naes}, and C.-W. {Tsai}, ``{The Wide-field Infrared Survey
+  Explorer (WISE): Mission Description and Initial On-orbit Performance},''
+  {\em \aj}, vol.~140, pp.~1868--1881, Dec. 2010.
+
+\bibitem{Jarrett_2017}
+T.~H. Jarrett, M.~E. Cluver, C.~Magoulas, M.~Bilicki, M.~Alpaslan,
+  J.~Bland-Hawthorn, S.~Brough, M.~J.~I. Brown, S.~Croom, S.~Driver, B.~W.
+  Holwerda, A.~M. Hopkins, J.~Loveday, P.~Norberg, J.~A. Peacock, C.~C.
+  Popescu, E.~M. Sadler, E.~N. Taylor, R.~J. Tuffs, and L.~Wang, ``Galaxy and
+  mass assembly (gama): Exploring the wise web in g12,'' {\em The Astrophysical
+  Journal}, vol.~836, p.~182, feb 2017.
+
+\end{thebibliography}

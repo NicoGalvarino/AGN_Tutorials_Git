@@ -85,7 +85,7 @@ AND g.nii_6584_flux > 5
 AND (g.nii_6584_flux / g.nii_6584_flux_err) > 5
 \end{sourcecode}
 
-This query defines the sample, gets the spectroscopic information on the needed lines and gets the colours from the WISE catalogue \cite{wise_allsky}. This query resulted in 960 objects. I checked their spectroscopic subclasses and saw that 163 objects are classified as starburst galaxies, 319 as broadline, 71 as AGN broadline, 214 as starforming, 29 as starforming broadline, 84 as AGN, one as starburst broadline, and the rest had no sub-classification. I plotted a BPT diagram (see Section \ref{bpt_diagram_section}) with the spectroscopic subclasses from SDSS as the style of the data points in Figure \ref{fig:BPT_subclasses}. The trends of the different classes are already visible.
+This query defines the sample, gets the spectroscopic information on the needed lines and gets the colours from the WISE catalogue \cite{wise_allsky}. This query resulted in 960 objects. I checked their spectroscopic subclasses and saw that 163 objects are classified as starburst galaxies, 319 as broadline, 71 as AGN broadline, 214 as starforming, 29 as starforming broadline, 84 as AGN, one as starburst broadline, and the rest had no sub-classification. I plotted a BPT diagram (see Section \ref{bpt_diagram_section}) with the spectroscopic subclasses from SDSS as the style of the data points in Figure \ref{fig:BPT_subclasses}. The trends of the different classes are already visible. This plot includes 866 sources out of the full sample. The excluded ones have no spectroscopic classification from SDSS.
 
 \begin{figure}[h]
 	\centering
@@ -96,7 +96,7 @@ This query defines the sample, gets the spectroscopic information on the needed 
 
 I also plotted the distributions of the relevant spectral line fluxes (see Figure \ref{fig:flux_distributions}).
 
-\begin{figure*}[h]
+\begin{figure*}[p]
 	\centering
 	\begin{subfigure}[b]{0.475\textwidth}
 		\centering
@@ -130,6 +130,15 @@ I also plotted the distributions of the relevant spectral line fluxes (see Figur
 \end{figure*}
 
 \subsection{BPT Diagram}\label{bpt_diagram_section}
+
+Next, I plotted the BPT diagram using theoretical lines in Figure \ref{fig:BPT_line}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.1\textwidth]{../BPT_with_lines.pdf}
+	\caption{BPT Diagram with theoretical lines.}
+	\label{fig:BPT_line}
+\end{figure}
 
 % ----------------------------------------------------------------------------
 

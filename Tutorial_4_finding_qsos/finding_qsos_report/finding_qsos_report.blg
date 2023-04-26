@@ -2,50 +2,50 @@ This is BibTeX, Version 0.99d (TeX Live 2020)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: ieeetr.bst
-Illegal, another \bibstyle command---line 45 of file main.aux
+Illegal, another \bibstyle command---line 59 of file main.aux
  : \bibstyle
  :          {natbib}
 I'm skipping whatever remains of this command
 Database file #1: references.bib
-You've used 7 entries,
+You've used 8 entries,
             1876 wiz_defined-function locations,
-            525 strings with 5984 characters,
-and the built_in function-call counts, 2789 in all, are:
-= -- 194
-> -- 264
+            532 strings with 6411 characters,
+and the built_in function-call counts, 3150 in all, are:
+= -- 214
+> -- 308
 < -- 0
-+ -- 91
-- -- 84
-* -- 272
-:= -- 458
-add.period$ -- 7
-call.type$ -- 7
-change.case$ -- 7
++ -- 106
+- -- 98
+* -- 312
+:= -- 525
+add.period$ -- 8
+call.type$ -- 8
+change.case$ -- 8
 chr.to.int$ -- 0
-cite$ -- 7
-duplicate$ -- 92
-empty$ -- 177
-format.name$ -- 84
-if$ -- 616
+cite$ -- 8
+duplicate$ -- 104
+empty$ -- 195
+format.name$ -- 98
+if$ -- 691
 int.to.chr$ -- 0
-int.to.str$ -- 7
-missing$ -- 5
-newline$ -- 24
-num.names$ -- 5
-pop$ -- 20
+int.to.str$ -- 8
+missing$ -- 6
+newline$ -- 27
+num.names$ -- 6
+pop$ -- 22
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 88
+skip$ -- 96
 stack$ -- 0
-substring$ -- 142
-swap$ -- 49
+substring$ -- 146
+swap$ -- 54
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 14
-width$ -- 8
-write$ -- 66
+while$ -- 16
+width$ -- 9
+write$ -- 76
 (There was 1 error message)

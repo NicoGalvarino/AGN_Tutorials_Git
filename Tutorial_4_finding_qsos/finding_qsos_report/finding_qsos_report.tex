@@ -48,8 +48,7 @@
 
 % ----------------------------------------------------------------------------
 
-The goal of this tutorial was to ...
-
+The goal of this tutorial was to learn how to classify galaxies between active galactic nuclei (AGN) and other inactive galaxies, and apply the methods that are commonly used for this to a large sample of galaxies.
 
 \section{Part I}
 
@@ -85,7 +84,7 @@ AND g.nii_6584_flux > 5
 AND (g.nii_6584_flux / g.nii_6584_flux_err) > 5
 \end{sourcecode}
 
-This query defines the sample, gets the spectroscopic information on the needed lines and gets the colours from the WISE catalogue \cite{wise_allsky}. This query resulted in 960 objects. I checked their spectroscopic subclasses and saw that 163 objects are classified as starburst galaxies, 319 as broadline, 71 as AGN broadline, 214 as starforming, 29 as starforming broadline, 84 as AGN, one as starburst broadline, and the rest had no sub-classification. I plotted a BPT diagram (see Section \ref{bpt_diagram_section}) with the spectroscopic subclasses from SDSS as the style of the data points in Figure \ref{fig:BPT_subclasses}. The trends of the different classes are already visible. This plot includes 866 sources out of the full sample. The excluded ones have no spectroscopic classification from SDSS.
+This query defines the sample, gets the spectroscopic information on the needed lines and gets the colours from the WISE catalogue \cite{wise_allsky}. This query resulted in 960 objects. I checked their spectroscopic subclasses and saw that 153 objects are classified as star-burst galaxies, 317 as broadline, 69 as AGN broadline, 213 as star-forming, 29 as star-forming broadline, 84 as AGN, one as starburst broadline, and the rest had no sub-classification. I plotted a BPT diagram (see Section \ref{bpt_diagram_section}) with the spectroscopic subclasses from SDSS as the style of the data points in Figure \ref{fig:BPT_subclasses}. The trends of the different classes are already visible. This plot includes 866 sources out of the full sample. The excluded ones have no spectroscopic classification from SDSS.
 
 \begin{figure}[h]
 	\centering
@@ -96,7 +95,60 @@ This query defines the sample, gets the spectroscopic information on the needed 
 
 I also plotted the distributions of the relevant spectral line fluxes (see Figure \ref{fig:flux_distributions}).
 
-\begin{figure*}[h]
+\subsection{BPT Diagram}\label{bpt_diagram_section}
+
+Next, I plotted the BPT diagram using theoretical lines in Figure \ref{fig:BPT_line}. This diagram allows to distinguish between star-forming or star-burst galaxies and AGN. I used three different theoretical lines to distinguish between star-forming galaxies, Seyfert galaxies and LINERs (low ionization nuclear emission line regions).
+
+The papers \cite{Kewley_2001} and \cite{Kauffmann_2003} propose a theoretical line to separate star-forming galaxies from AGN. The one from the former is stricter and poses a lower limit on the amount of AGN.
+
+\begin{equation} \label{kewley}
+	\log{ \left(  \text{[OIII]} / {\text{H}\beta} \right)  } = \frac{0.61}{\log{ \left(  \text{[NII]} / {\text{H}\alpha} \right)  } - 0.47} + 1.19
+\end{equation}
+
+\begin{equation} \label{kauffman}
+	\log{ \left(  \text{[OIII]} / {\text{H}\beta} \right)  } = \frac{0.61}{\log{ \left( \text{[NII]} / {\text{H}\alpha} \right)  } - 0.05} + 1.30
+\end{equation}
+
+The objects labeled as ``Composite'' in Figure \ref{fig:BPT_line} have a different classification by \cite{Kewley_2001} and \cite{Kauffmann_2003}.
+
+Then, \cite{Schawinski_2007} further separates AGN into Seyfert galaxies and LINERs:
+\begin{equation} \label{shawinksi}
+	\log{ \left( \text{[OIII]} / {\text{H}\beta}\right)  } = 1.05 \log{ \left(  \text{[NII]} / {\text{H}\alpha} \right)  } + 0.45
+\end{equation}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.1\textwidth]{../BPT_with_lines_and_random.pdf}
+	\caption{BPT Diagram with theoretical lines.}
+	\label{fig:BPT_line}
+\end{figure}
+
+% ----------------------------------------------------------------------------
+
+\section{Part II}
+
+I downloaded the WISE colours \cite{Wright_2010} using the same SQL as the first part \ref{sdss_query}.
+
+\subsection{WISE Colour-Colour Diagram}
+
+Next, I plotted the WISE color-color diagram as in \cite{Jarrett_2017} (see Figure \ref{fig:wise_colours}). There are only four AGN according to this classification, which differs significantly from the classification in Figure \ref{fig:BPT_line}. The trend the data points follow are also quite different.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.1\textwidth]{../wise_color_color.pdf}
+	\caption{WISE colour-colour diagram.}
+	\label{fig:wise_colours}
+\end{figure}
+
+\subsection{Analysing a Particular Object}
+
+Finally, I chose a random object with $W1 - W2 \geq 0.8$ \cite{Assef_2013}. It is marked with a purple star in Figures \ref{fig:BPT_line} and \ref{fig:wise_colours}. It is classified as an AGN by the WISE colour-colour diagram, and as a composite in the BPT diagram, which means \cite{Kauffmann_2003} classifies it as an AGN and \cite{Kewley_2001} as a star-forming galaxy. In this diagram, it is close to the threshold between composite and star-forming galaxies, so there is ambiguity in this classification. Then, in the WISE colour-colour diagram, this object lies in the AGN region but it is the closest to the star-forming disk region out of the few AGN in this plot. So, out of the four AGN, it is the one that has the most uncertainty in the classification. So, even though both classifications do not exactly agree, they are not contradictory because they both place this object close to the boundary between the AGN and star-forming galaxy regions.
+
+Based purely on the WISE colour-colour diagram, I would say this is an AGN. When locating this object in Figure 11b from \cite{Jarrett_2017} (above the AGN threshold, but with $W1-W2 < 1.0$ and $2.5 < W2-W3 < 4.0$), it lands in the quasar (QSO) region. So, I believe this is an AGN, most likely a QSO, but probably with some star formation signatures, which is what might have produced the discrepancies between both classifications as well as placed the object close to the thresholds.
+
+% ----------------------------------------------------------------------------
+
+\begin{figure*}[p]
 	\centering
 	\begin{subfigure}[b]{0.45\textwidth}
 		\centering
@@ -128,57 +180,6 @@ I also plotted the distributions of the relevant spectral line fluxes (see Figur
 	\caption{Distribution of the fluxes of the relevant spectral lines.} 
 	\label{fig:flux_distributions}
 \end{figure*}
-
-\subsection{BPT Diagram}\label{bpt_diagram_section}
-
-Next, I plotted the BPT diagram using theoretical lines in Figure \ref{fig:BPT_line}. This diagram allows to distinguish between star-forming or star-burst galaxies and AGN. I used three different theoretical lines to distinguish between star-forming galaxies, Seyfert galaxies and LINERs (low ionization nuclear emission line regions).
-
-The papers \cite{Kewley_2001} and \cite{Kauffmann_2003} propose a theoretical line to separate star-forming galaxies from AGN. The one from the former is stricter and poses a lower limit on the amount of AGN.
-
-\begin{equation} \label{kewley}
-	\log{ \text{[OIII]} / {\text{H}\beta} } = \frac{0.61}{\log{ \text{[NII]} / {\text{H}\alpha} } - 0.47} + 1.19
-\end{equation}
-
-\begin{equation} \label{kauffman}
-	\log{ \text{[OIII]} / {\text{H}\beta} } = \frac{0.61}{\log{ \text{[NII]} / {\text{H}\alpha} } - 0.05} + 1.30
-\end{equation}
-
-The objects labeled as ``Composite'' in Figure \ref{fig:BPT_line} have a different classification by \cite{Kewley_2001} and \cite{Kauffmann_2003}.
-
-Then, \cite{Schawinski_2007} further separates AGN into Seyfert galaxies and LINERs:
-\begin{equation} \label{shawinksi}
-	\log{ \text{[OIII]} / {\text{H}\beta} } = 1.05 \log{ \text{[NII]} / {\text{H}\alpha} } + 0.45
-\end{equation}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1.1\textwidth]{../BPT_with_lines_and_random.pdf}
-	\caption{BPT Diagram with theoretical lines.}
-	\label{fig:BPT_line}
-\end{figure}
-
-% ----------------------------------------------------------------------------
-
-\section{Part II}
-
-I downloaded the WISE colours \cite{Wright_2010} using the same SQL as the first part \ref{sdss_query}.
-
-\subsection{WISE Colour-Colour Diagram}
-
-\cite{Jarrett_2017}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1.1\textwidth]{../wise_color_color.pdf}
-	\caption{WISE colour-colour diagram.}
-	\label{fig:wise_colours}
-\end{figure}
-
-\subsection{Analysing a Particular Object}
-
-
-
-% ----------------------------------------------------------------------------
 
 \bibliographystyle{natbib}
 \bibliography{references}

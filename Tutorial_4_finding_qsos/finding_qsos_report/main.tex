@@ -96,30 +96,30 @@ This query defines the sample, gets the spectroscopic information on the needed 
 
 I also plotted the distributions of the relevant spectral line fluxes (see Figure \ref{fig:flux_distributions}).
 
-\begin{figure*}[p]
+\begin{figure*}[h]
 	\centering
-	\begin{subfigure}[b]{0.475\textwidth}
+	\begin{subfigure}[b]{0.45\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{../distr_h_alpha_flux.pdf}
 		\caption[]{Distribution of H$\alpha$ fluxes.}
 		\label{fig:distr_h_alpha}
 	\end{subfigure}
 	\hfill
-	\begin{subfigure}[b]{0.475\textwidth} 
+	\begin{subfigure}[b]{0.45\textwidth} 
 		\centering 
 		\includegraphics[width=\textwidth]{../distr_h_beta_flux.pdf}
 		\caption[]{Distribution of H$\beta$ fluxes.}
 		\label{fig:distr_h_beta}
 	\end{subfigure}
 	\vskip\baselineskip
-	\begin{subfigure}[b]{0.475\textwidth}   
+	\begin{subfigure}[b]{0.45\textwidth}   
 		\centering 
 		\includegraphics[width=\textwidth]{../distr_nii_6584_flux.pdf}
 		\caption[]{Distribution of [NII] fluxes.}
 		\label{fig:distr_nii}
 	\end{subfigure}
 	\hfill
-	\begin{subfigure}[b]{0.475\textwidth}   
+	\begin{subfigure}[b]{0.45\textwidth}   
 		\centering 
 		\includegraphics[width=\textwidth]{../distr_oiii_5007_flux.pdf}
 		\caption[]{Distribution of [OIII] fluxes.}
@@ -131,11 +131,28 @@ I also plotted the distributions of the relevant spectral line fluxes (see Figur
 
 \subsection{BPT Diagram}\label{bpt_diagram_section}
 
-Next, I plotted the BPT diagram using theoretical lines in Figure \ref{fig:BPT_line}.
+Next, I plotted the BPT diagram using theoretical lines in Figure \ref{fig:BPT_line}. This diagram allows to distinguish between star-forming or star-burst galaxies and AGN. I used three different theoretical lines to distinguish between star-forming galaxies, Seyfert galaxies and LINERs (low ionization nuclear emission line regions).
+
+The papers \cite{Kewley_2001} and \cite{Kauffmann_2003} propose a theoretical line to separate star-forming galaxies from AGN. The one from the former is stricter and poses a lower limit on the amount of AGN.
+
+\begin{equation} \label{kewley}
+	\log{ \text{[OIII]} / {\text{H}\beta} } = \frac{0.61}{\log{ \text{[NII]} / {\text{H}\alpha} } - 0.47} + 1.19
+\end{equation}
+
+\begin{equation} \label{kauffman}
+	\log{ \text{[OIII]} / {\text{H}\beta} } = \frac{0.61}{\log{ \text{[NII]} / {\text{H}\alpha} } - 0.05} + 1.30
+\end{equation}
+
+The objects labeled as ``Composite'' in Figure \ref{fig:BPT_line} have a different classification by \cite{Kewley_2001} and \cite{Kauffmann_2003}.
+
+Then, \cite{Schawinski_2007} further separates AGN into Seyfert galaxies and LINERs:
+\begin{equation} \label{shawinksi}
+	\log{ \text{[OIII]} / {\text{H}\beta} } = 1.05 \log{ \text{[NII]} / {\text{H}\alpha} } + 0.45
+\end{equation}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=1.1\textwidth]{../BPT_with_lines.pdf}
+	\includegraphics[width=1.1\textwidth]{../BPT_with_lines_and_random.pdf}
 	\caption{BPT Diagram with theoretical lines.}
 	\label{fig:BPT_line}
 \end{figure}

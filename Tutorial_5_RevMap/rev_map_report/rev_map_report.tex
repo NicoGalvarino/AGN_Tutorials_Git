@@ -46,11 +46,62 @@
 % CONFIGURACIÓN DE PÁGINA Y ENCABEZADOS
 \templatePagecfg
 
+The goal of this tutorial was to learn photo-reverberation mapping (photo-RM) methods and techniques, and to get introduce to tools that simulate active galactic nuclei (AGN) light-curves and perform photo-RM. And then, to apply these methods to real observational data.
+
 % ----------------------------------------------------------------------------
 
+\section*{Task 1}
+
+\section{Simulating Light-Curves}
+
+In the \texttt{photRM.py} module, there are functions implemented to generate artificial AGN light curves. The \texttt{lc\_two\_bands} function generates them and returns light-curves that are ready for photo-RM. There are two main components for these light-curves:
+\begin{itemize}
+	\item The $X$ band, which covers only the continuum. This one is generated with a Damped random walk (DRW) proccess \cite{Kovacevic_2021} \cite{Kelly_2009}, which is able to describe optical thermal emission of the accretion disk.
+	
+	\item The $Y$ band, which covers emission lines and its surrounding continuum. It is modeled as described in \cite{Jankov_2022} \cite{Chelouche_Daniel_2012}. The emission line response curve is obtained by convolving the $X$ band light curve with a Gaussian kernel, which mean and standard deviation depend on the radius of the broad line region. Then this is summed up with another pure continuum curve with appropiate realistic weights.
+\end{itemize}
+
+I generated three pairs of light curves with $\log L = $ 43, 44 and 45 $L_{\odot}$ respectively. They are 5000 data points long, have redshift $z = 0.1$, have an oscillatory signal with an amplitude of 0.14 magnitudes, noise of a factor of 0.00005, and a random time-lag. In Figures \ref{fig:art_lcs_L43}, \ref{fig:art_lcs_L44} and \ref{fig:art_lcs_L45}, I plotted the first 1000 detections of these light-curves.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../art_lcs_logL43.pdf}
+	\caption{Artificial light-curve of an AGN with $\log L = 43 L_{\odot}$}.
+	\label{fig:art_lcs_L43}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../art_lcs_logL44.pdf}
+	\caption{Artificial light-curve of an AGN with $\log L = 44 L_{\odot}$.}
+	\label{fig:art_lcs_L44}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../art_lcs_logL45.pdf}
+	\caption{Artificial light-curve of an AGN with $\log L = 44 L_{\odot}$.}
+	\label{fig:art_lcs_L45}
+\end{figure}
+
+
+
+\section{Estimating Time-Lags}
+
+
+
+\section{Gapped Light-Curves}
+
+
 
 % ----------------------------------------------------------------------------
 
+\section*{Task 2: NGC 4395}
+
+\cite{Edri_2012}
+
+
+% ----------------------------------------------------------------------------
 
 \bibliographystyle{natbib}
 \bibliography{references}

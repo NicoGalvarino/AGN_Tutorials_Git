@@ -1,0 +1,7 @@
+,object_name,lc_1,lc_2,lag_peak,lag_lowerr,lag_uperr,r_peak
+0,artificial,x_band_43,,0.0,0.0,500.0,1.0
+1,artificial,x_band_44,,0.0,0.0,500.0,1.0
+2,artificial,x_band_45,,0.0,0.0,500.0,1.0
+3,artificial,y_band_43,,0.0,0.0,500.0,1.0
+4,artificial,y_band_44,,0.0,0.0,500.0,1.0
+5,artificial,y_band_45,,0.0,0.0,500.0,1.0

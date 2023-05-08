@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  7 MAY 2023 16:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  8 MAY 2023 16:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1377,7 +1377,18 @@ Package pdftex.def Info: ../art_lcs_logL45.pdf  used on input line 82.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-(./rev_map_report.bbl
+
+LaTeX Warning: Citation `Alexander_2013' on page 1 undefined on input line 91.
+
+
+LaTeX Warning: Citation `tal_alexander_software' on page 1 undefined on input l
+ine 91.
+
+(./rev_map_report.bbl [1
+
+
+{/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./img/m
+ass.png>]
 ! Undefined control sequence.
 l.5 ...rberation Mapping of NGC 4395},'' {\em \apj
                                                   },
@@ -1387,11 +1398,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-[1
-
-
-{/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./img/m
-ass.png>])
+)
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 109.
  [2 <../art_lcs_logL43.pdf>]
 LaTeX Info: Redefining \. on input line 109.
@@ -1420,7 +1427,7 @@ Here is how much of TeX's memory you used:
  40697 multiletter control sequences out of 15000+600000
  607946 words of font info for 101 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 47i,13n,79p,2891b,2211s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 47i,13n,79p,2891b,2219s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/
 texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/20
 20/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2020/texmf-d
@@ -1434,10 +1441,10 @@ cal/texlive/2020/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive
 s/type1/public/lm/lmro12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/pu
 blic/lm/lmsy7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/lm/lms
 y8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/lm/lmvtt10.pfb>
-Output written on rev_map_report.pdf (3 pages, 656652 bytes).
+Output written on rev_map_report.pdf (3 pages, 657832 bytes).
 PDF statistics:
- 258 PDF objects out of 1000 (max. 8388607)
- 97 compressed objects within 1 object stream
+ 257 PDF objects out of 1000 (max. 8388607)
+ 96 compressed objects within 1 object stream
  11 named destinations out of 1000 (max. 500000)
  49 words of extra memory for PDF output out of 10000 (max. 10000000)
 

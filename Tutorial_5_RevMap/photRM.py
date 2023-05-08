@@ -599,7 +599,8 @@ def delta_ccf(acf, ccf):
     return delta
 
 
-def plot_ccf_acf(delta, ccf, acf, locator=10, save=False, peak=False, tau=0, err=(0,0), lims_x=(-20,80), lims_y=(-0.25,1.25)):
+def plot_ccf_acf(delta, ccf, acf, locator=10, save=False, save_filename=None, peak=False, 
+                 tau=0, err=(0,0), lims_x=(-20,80), lims_y=(-0.25,1.25), lims_y_ax2=(-0.25, 0.25)):
     """
     Plot CCF, ACF and their difference. Optionally, you can add peak location 
     (tau) and associated errors.
@@ -673,14 +674,14 @@ def plot_ccf_acf(delta, ccf, acf, locator=10, save=False, peak=False, tau=0, err
     ax2.xaxis.set_major_locator(plt.MultipleLocator(locator))
     ax2.yaxis.set_major_locator(plt.MultipleLocator(0.1))
     ax2.legend(fontsize=13, loc='lower left')
-    ax2.set_ylim(-0.25,0.25)
+    ax2.set_ylim(lims_y_ax2)
     ax2.set_xlim(x1,x2)
     if peak==True:
         ax2.text(0.72,0.05, r'$\tau$ = {:.1f} ({:.1f},+{:.1f}) d'.format(tau,err_low,err_high), transform=ax2.transAxes, size=12.5)
     
     fig.text(0.03, 0.5, "Correlation (arbit. units)", va='center', rotation='vertical',fontsize=18)
     if save==True:
-        plt.savefig('ccf-acf.pdf',dpi=800)
+        plt.savefig(save_filename+'.pdf',dpi=800)
     plt.show()
     
     

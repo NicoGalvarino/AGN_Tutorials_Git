@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  8 MAY 2023 16:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  10 MAY 2023 15:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1102,8 +1102,8 @@ Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'spanish'.
 
 (./rev_map_report.aux
-LaTeX Info: Redefining \. on input line 35.
-LaTeX Info: Redefining \% on input line 35.
+LaTeX Info: Redefining \. on input line 36.
+LaTeX Info: Redefining \% on input line 36.
 )
 \openout1 = `rev_map_report.aux'.
 
@@ -1333,62 +1333,94 @@ Package pdftex.def Info: img/mass.png  used on input line 47.
 (pdftex.def)             Requested size: 78.30096pt x 54.06006pt.
 
 
-LaTeX Warning: Citation `Kovacevic_2021' on page 1 undefined on input line 59.
+LaTeX Warning: Citation `Kovacevic_2021' on page 1 undefined on input line 57.
 
 
-LaTeX Warning: Citation `Kelly_2009' on page 1 undefined on input line 59.
+LaTeX Warning: Citation `Kelly_2009' on page 1 undefined on input line 57.
 
 
-LaTeX Warning: Citation `Jankov_2022' on page 1 undefined on input line 61.
+LaTeX Warning: Citation `Jankov_2022' on page 1 undefined on input line 62.
 
 
 LaTeX Warning: Citation `Chelouche_Daniel_2012' on page 1 undefined on input li
-ne 61.
+ne 62.
 
 <../art_lcs_logL43.pdf, id=9, 1084.05pt x 650.43pt>
 File: ../art_lcs_logL43.pdf Graphic file (type pdf)
 <use ../art_lcs_logL43.pdf>
-Package pdftex.def Info: ../art_lcs_logL43.pdf  used on input line 68.
+Package pdftex.def Info: ../art_lcs_logL43.pdf  used on input line 69.
 (pdftex.def)             Requested size: 375.80574pt x 225.48038pt.
-LaTeX Font Info:    Calculating math sizes for size <10.03757> on input line 69
+LaTeX Font Info:    Calculating math sizes for size <10.03757> on input line 70
 .
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.03757> on input line 69.
+(Font)              <10.03757> on input line 70.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7.02626> on input line 69.
+(Font)              <7.02626> on input line 70.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5.01878> on input line 69.
+(Font)              <5.01878> on input line 70.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 <../art_lcs_logL44.pdf, id=10, 1084.05pt x 650.43pt>
 File: ../art_lcs_logL44.pdf Graphic file (type pdf)
 <use ../art_lcs_logL44.pdf>
-Package pdftex.def Info: ../art_lcs_logL44.pdf  used on input line 75.
+Package pdftex.def Info: ../art_lcs_logL44.pdf  used on input line 76.
 (pdftex.def)             Requested size: 375.80574pt x 225.48038pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 <../art_lcs_logL45.pdf, id=11, 1084.05pt x 650.43pt>
 File: ../art_lcs_logL45.pdf Graphic file (type pdf)
 <use ../art_lcs_logL45.pdf>
-Package pdftex.def Info: ../art_lcs_logL45.pdf  used on input line 82.
+Package pdftex.def Info: ../art_lcs_logL45.pdf  used on input line 83.
 (pdftex.def)             Requested size: 375.80574pt x 225.48038pt.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: Citation `Alexander_2013' on page 1 undefined on input line 91.
+LaTeX Warning: Citation `Alexander_2013' on page 1 undefined on input line 92.
 
 
 LaTeX Warning: Citation `tal_alexander_software' on page 1 undefined on input l
-ine 91.
+ine 92.
 
-(./rev_map_report.bbl [1
+<../x_y_bands_43_final.pdf, id=12, 650.43pt x 433.62pt>
+File: ../x_y_bands_43_final.pdf Graphic file (type pdf)
+<use ../x_y_bands_43_final.pdf>
+Package pdftex.def Info: ../x_y_bands_43_final.pdf  used on input line 96.
+(pdftex.def)             Requested size: 375.80574pt x 250.54037pt.
 
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-{/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./img/m
-ass.png>]
+<../x_y_bands_44_final.pdf, id=13, 650.43pt x 433.62pt>
+File: ../x_y_bands_44_final.pdf Graphic file (type pdf)
+<use ../x_y_bands_44_final.pdf>
+Package pdftex.def Info: ../x_y_bands_44_final.pdf  used on input line 103.
+(pdftex.def)             Requested size: 375.80574pt x 250.54037pt.
+<../x_y_bands_45_final.pdf, id=14, 650.43pt x 433.62pt>
+File: ../x_y_bands_45_final.pdf Graphic file (type pdf)
+<use ../x_y_bands_45_final.pdf>
+Package pdftex.def Info: ../x_y_bands_45_final.pdf  used on input line 110.
+(pdftex.def)             Requested size: 375.80574pt x 250.54037pt.
+<../artificial_x_y_5days.pdf, id=15, 650.43pt x 433.62pt>
+File: ../artificial_x_y_5days.pdf Graphic file (type pdf)
+<use ../artificial_x_y_5days.pdf>
+Package pdftex.def Info: ../artificial_x_y_5days.pdf  used on input line 121.
+(pdftex.def)             Requested size: 375.80574pt x 250.54037pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<../artificial_x_y_month.pdf, id=16, 650.43pt x 433.62pt>
+File: ../artificial_x_y_month.pdf Graphic file (type pdf)
+<use ../artificial_x_y_month.pdf>
+Package pdftex.def Info: ../artificial_x_y_month.pdf  used on input line 128.
+(pdftex.def)             Requested size: 375.80574pt x 250.54037pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<../artificial_x_y_lgaps.pdf, id=17, 650.43pt x 433.62pt>
+File: ../artificial_x_y_lgaps.pdf Graphic file (type pdf)
+<use ../artificial_x_y_lgaps.pdf>
+Package pdftex.def Info: ../artificial_x_y_lgaps.pdf  used on input line 135.
+(pdftex.def)             Requested size: 375.80574pt x 250.54037pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+(./rev_map_report.bbl
 ! Undefined control sequence.
 l.5 ...rberation Mapping of NGC 4395},'' {\em \apj
                                                   },
@@ -1398,36 +1430,61 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 109.
+[1
+
+
+{/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./img/m
+ass.png>])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 152.
  [2 <../art_lcs_logL43.pdf>]
-LaTeX Info: Redefining \. on input line 109.
-LaTeX Info: Redefining \% on input line 109.
+LaTeX Info: Redefining \. on input line 152.
+LaTeX Info: Redefining \% on input line 152.
  [3 <../art_lcs_logL44.pdf> <../art_lcs_logL45.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../art_lcs_logL45.pdf): PDF 
 inclusion: multiple pdfs with page group included in a single page
 >]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 109.
+LaTeX Info: Redefining \. on input line 152.
+LaTeX Info: Redefining \% on input line 152.
+ [4 <../x_y_bands_43_final.pdf> <../x_y_bands_44_final.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../x_y_bands_44_final.pdf): 
+PDF inclusion: multiple pdfs with page group included in a single page
+>]
+LaTeX Info: Redefining \. on input line 152.
+LaTeX Info: Redefining \% on input line 152.
+ [5 <../x_y_bands_45_final.pdf> <../artificial_x_y_5days.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../artificial_x_y_5days.pdf)
+: PDF inclusion: multiple pdfs with page group included in a single page
+>]
+LaTeX Info: Redefining \. on input line 152.
+LaTeX Info: Redefining \% on input line 152.
+ [6 <../artificial_x_y_month.pdf> <../artificial_x_y_lgaps.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../artificial_x_y_lgaps.pdf)
+: PDF inclusion: multiple pdfs with page group included in a single page
+>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 152.
  (./rev_map_report.aux
-LaTeX Info: Redefining \. on input line 35.
-LaTeX Info: Redefining \% on input line 35.
+LaTeX Info: Redefining \. on input line 36.
+LaTeX Info: Redefining \% on input line 36.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 109.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 109.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 152.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 152.
 
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 25349 strings out of 480608
- 379453 string characters out of 5903631
- 891147 words of memory out of 5000000
- 40697 multiletter control sequences out of 15000+600000
+ 25406 strings out of 480608
+ 380938 string characters out of 5903631
+ 898316 words of memory out of 5000000
+ 40739 multiletter control sequences out of 15000+600000
  607946 words of font info for 101 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 47i,13n,79p,2891b,2219s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 47i,13n,79p,2891b,2211s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/
 texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/20
 20/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2020/texmf-d
@@ -1441,10 +1498,10 @@ cal/texlive/2020/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive
 s/type1/public/lm/lmro12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/pu
 blic/lm/lmsy7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/lm/lms
 y8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/lm/lmvtt10.pfb>
-Output written on rev_map_report.pdf (3 pages, 657832 bytes).
+Output written on rev_map_report.pdf (6 pages, 781691 bytes).
 PDF statistics:
- 257 PDF objects out of 1000 (max. 8388607)
- 96 compressed objects within 1 object stream
- 11 named destinations out of 1000 (max. 500000)
- 49 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 599 PDF objects out of 1000 (max. 8388607)
+ 170 compressed objects within 2 object streams
+ 20 named destinations out of 1000 (max. 500000)
+ 79 words of extra memory for PDF output out of 10000 (max. 10000000)
 

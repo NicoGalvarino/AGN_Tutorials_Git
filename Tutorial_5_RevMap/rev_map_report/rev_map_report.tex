@@ -54,9 +54,10 @@ The goal of this tutorial was to learn photo-reverberation mapping (photo-RM) me
 
 \section{Simulating Light-Curves}
 
-In the \texttt{photRM.py} module, there are functions implemented to generate artificial AGN light curves. The \texttt{lc\_two\_bands} function generates them and returns light-curves that are ready for photo-RM. There are two main components for these light-curves:
+In the \texttt{photRM.py} module, there are functions implemented to generate artificial AGN light curves. The \texttt{lc\_two\_bands} function generates them and returns light-curves that are ready for photo-RM. There are two main components for these light-curves \cite{Kovacevic_2021, Kelly_2009}:
 \begin{itemize}
-	\item The $X$ band, which covers only the continuum. This one is generated with a Damped random walk (DRW) proccess \cite{Kovacevic_2021, Kelly_2009}, which is able to describe optical thermal emission of the accretion disk.
+	\item The $X$ band, which covers only the continuum. This one is generated with a Damped random walk (DRW) process %\cite{Kovacevic_2021, Kelly_2009}
+	, which is able to describe optical thermal emission of the accretion disk.
 	
 	\item The $Y$ band, which covers emission lines and its surrounding continuum. It is modeled as described in \cite{Jankov_2022, Chelouche_Daniel_2012}. The emission line response curve is obtained by convolving the $X$ band light curve with a Gaussian kernel, which mean and standard deviation depend on the radius of the broad line region. Then this is summed up with another pure continuum curve with appropiate realistic weights.
 \end{itemize}
@@ -122,14 +123,14 @@ Then, I estimated the time-lags of each pair of light-curves. I was using \textt
 	\label{fig:ccf_art_lc_L43_5days}
 \end{figure}
 
-\begin{figure}[p]
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\textwidth]{../artificial_x_y_month.pdf}
 	\caption{CCF of the artificial light-curve with $\log L = 43 L_{\odot}$ with detections in a pattern of every day for one month and then a gap of a month.}.
 	\label{fig:ccf_art_lc_L43_month}
 \end{figure}
 
-\begin{figure}[p]
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\textwidth]{../artificial_x_y_lgaps.pdf}
 	\caption{CCF of the artificial light-curve with $\log L = 43 L_{\odot}$ with detections in a pattern of three month of observations every day, followed by six months of observations with a frequency of once per month and then a gap of three months.}.

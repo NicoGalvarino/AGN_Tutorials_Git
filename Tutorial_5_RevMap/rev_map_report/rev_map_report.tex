@@ -62,26 +62,26 @@ In the \texttt{photRM.py} module, there are functions implemented to generate ar
 	\item The $Y$ band, which covers emission lines and its surrounding continuum. It is modeled as described in \cite{Jankov_2022, Chelouche_Daniel_2012}. The emission line response curve is obtained by convolving the $X$ band light curve with a Gaussian kernel, which mean and standard deviation depend on the radius of the broad line region. Then this is summed up with another pure continuum curve with appropiate realistic weights.
 \end{itemize}
 
-I generated three pairs of light curves with $\log L = $ 43, 44 and 45 $L_{\odot}$ respectively. They are 5000 data points long, have redshift $z = 0.1$, have an oscillatory signal with an amplitude of 0.14 magnitudes, noise of a factor of 0.00005, and a random time-lag. In Figures \ref{fig:art_lcs_L43}, \ref{fig:art_lcs_L44} and \ref{fig:art_lcs_L45}, I plotted the first 1000 detections of these light-curves.
+I generated three pairs of light curves with $\log L = $ 43, 44 and 45 $L_{\odot}$ respectively. They are 5000 data points long, have redshift $z = 0.1$, have an oscillatory signal with an amplitude of 0.14 magnitudes, noise of a factor of 0.00005, and a random time-lag. In Figures \ref{fig:art_lcs_L43}, \ref{fig:art_lcs_L44} and \ref{fig:art_lcs_L45}, I plotted the first 1000 detections of these light-curves. The time-lags printed by the \texttt{lc\_two\_bands} function are 9.86, 33.65 and 114.82 days respectively.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.8\textwidth]{../art_lcs_logL43.pdf}
-	\caption{Artificial light-curve of an AGN with $\log L = 43 L_{\odot}$}.
+	\includegraphics[width=0.8\textwidth]{../lc_plots/art_lcs_logL43.pdf}
+	\caption{Artificial light-curve of an AGN with $\log L = 43 L_{\odot}$ and a time-lasg of 9.86 days.}
 	\label{fig:art_lcs_L43}
 \end{figure}
 
 \begin{figure}[p]
 	\centering
-	\includegraphics[width=0.8\textwidth]{../art_lcs_logL44.pdf}
-	\caption{Artificial light-curve of an AGN with $\log L = 44 L_{\odot}$.}
+	\includegraphics[width=0.8\textwidth]{../lc_plots/art_lcs_logL44.pdf}
+	\caption{Artificial light-curve of an AGN with $\log L = 44 L_{\odot}$ and a time-lag of 33.65 days.}
 	\label{fig:art_lcs_L44}
 \end{figure}
 
 \begin{figure}[p]
 	\centering
-	\includegraphics[width=0.8\textwidth]{../art_lcs_logL45.pdf}
-	\caption{Artificial light-curve of an AGN with $\log L = 45 L_{\odot}$.}
+	\includegraphics[width=0.8\textwidth]{../lc_plots/art_lcs_logL45.pdf}
+	\caption{Artificial light-curve of an AGN with $\log L = 45 L_{\odot}$ and a time-lag of 114.82 days.}
 	\label{fig:art_lcs_L45}
 \end{figure}
 
@@ -89,29 +89,45 @@ I generated three pairs of light curves with $\log L = $ 43, 44 and 45 $L_{\odot
 
 \section{Estimating Time-Lags}
 
-Then, I estimated the time-lags of each pair of light-curves. I was using \texttt{PLIKE}, a Fortran code \cite{Alexander_2013, tal_alexander_software}, but unfortunately I ran out of time to properly implement the few missing functions to run it. I 
+Then, I estimated the time-lags of each pair of light-curves. For this, I used \texttt{pyzdcf} \cite{pyzdcf_docs}, a python implementation of a simpler version of \texttt{PLIKE}, a Fortran code \cite{Alexander_2013, tal_alexander_software}. The results are plotted in Figures \ref{fig:ccf_art_lcs_L43}, \ref{fig:ccf_art_lcs_L44} and \ref{fig:ccf_art_lcs_L45}. The estimations closely match the time-lag posted by the \texttt{lc\_two\_bands} function. They are 9.0, 33.0 and 115.0 days respectively. Thus, these are very good results. However, the accuracies and errors are lost in the \texttt{pyzdcf} code.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.8\textwidth]{../x_y_bands_43_final.pdf}
+	\includegraphics[width=0.8\textwidth]{../CCF_plots/x_y_bands_43_final.pdf}
 	\caption{CCF of the artificial light-curve with $\log L = 43 L_{\odot}$}.
 	\label{fig:ccf_art_lcs_L43}
 \end{figure}
 
 \begin{figure}[p]
 	\centering
-	\includegraphics[width=0.8\textwidth]{../x_y_bands_44_final.pdf}
+	\includegraphics[width=0.8\textwidth]{../CCF_plots/x_y_bands_44_final.pdf}
 	\caption{CCF of the artificial light-curve with $\log L = 44 L_{\odot}$.}
 	\label{fig:ccf_art_lcs_L44}
 \end{figure}
 
 \begin{figure}[p]
 	\centering
-	\includegraphics[width=0.8\textwidth]{../x_y_bands_45_final.pdf}
+	\includegraphics[width=0.8\textwidth]{../CCF_plots/x_y_bands_45_final.pdf}
 	\caption{CCF of the artificial light-curve with $\log L = 45 L_{\odot}$.}
 	\label{fig:ccf_art_lcs_L45}
 \end{figure}
 
+I note that the more luminous AGN have a larger time-lag (see Figure \ref{fig:art_lum_vs_lag}). This can be explained with the size or supermassive black hole (SMBH) mass versus luminosity relation \cite{Kaspi_2007, Bentz_2009}:
+\begin{align}
+	R_{BLR} \propto L^{\alpha}
+\end{align}
+
+[PHYSICS OF THE THING]
+
+Different authors have estimated $\alpha$. For example, \cite{Kaspi_2005} obtained an estimate of $0.665 \pm 0.069$ and \cite{Bentz_2009} obtained one equal to $0.519 + 0.063 - 0.066$. I plotted this relation to see how it looks like for these artificial light-curves in Figure \ref{fig:art_lum_vs_lag}. None of these slopes fit the artificial light curves, so by trial and error I found that a slope of 0.340 somewhat fits them. The difference might be due to the fact that these light-curves are artificial, or perhaps a redshift correction should be done first.
+
+\begin{wrapfigure}{L}{0.48\textwidth}
+	\begin{center}
+		\includegraphics[width=0.8\textwidth]{../other_plots/artificial_L_vs_timelag.pdf}
+	\end{center}
+	\caption{Luminosity versus time-lags for the artificial light-curves.}
+	\label{fig:art_lum_vs_lag}
+\end{wrapfigure}
 
 
 \section{Gapped Light-Curves}

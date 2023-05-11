@@ -64,53 +64,20 @@ In the \texttt{photRM.py} module, there are functions implemented to generate ar
 
 I generated three pairs of light curves with $\log L = $ 43, 44 and 45 $L_{\odot}$ respectively. They are 5000 data points long, have redshift $z = 0.1$, have an oscillatory signal with an amplitude of 0.14 magnitudes, noise of a factor of 0.00005, and a random time-lag. In Figures \ref{fig:art_lcs_L43}, \ref{fig:art_lcs_L44} and \ref{fig:art_lcs_L45}, I plotted the first 1000 detections of these light-curves. The time-lags printed by the \texttt{lc\_two\_bands} function are 9.86, 33.65 and 114.82 days respectively.
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{../lc_plots/art_lcs_logL43.pdf}
-	\caption{Artificial light-curve of an AGN with $\log L = 43 L_{\odot}$ and a time-lasg of 9.86 days.}
-	\label{fig:art_lcs_L43}
-\end{figure}
-
-\begin{figure}[p]
-	\centering
-	\includegraphics[width=0.8\textwidth]{../lc_plots/art_lcs_logL44.pdf}
-	\caption{Artificial light-curve of an AGN with $\log L = 44 L_{\odot}$ and a time-lag of 33.65 days.}
-	\label{fig:art_lcs_L44}
-\end{figure}
-
-\begin{figure}[p]
-	\centering
-	\includegraphics[width=0.8\textwidth]{../lc_plots/art_lcs_logL45.pdf}
-	\caption{Artificial light-curve of an AGN with $\log L = 45 L_{\odot}$ and a time-lag of 114.82 days.}
-	\label{fig:art_lcs_L45}
-\end{figure}
-
 
 
 \section{Estimating Time-Lags}
 
-Then, I estimated the time-lags of each pair of light-curves. For this, I used \texttt{pyzdcf} \cite{pyzdcf_docs}, a python implementation of a simpler version of \texttt{PLIKE}, a Fortran code \cite{Alexander_2013, tal_alexander_software}. The results are plotted in Figures \ref{fig:ccf_art_lcs_L43}, \ref{fig:ccf_art_lcs_L44} and \ref{fig:ccf_art_lcs_L45}. The estimations closely match the time-lag posted by the \texttt{lc\_two\_bands} function. They are 9.0, 33.0 and 115.0 days respectively. Thus, these are very good results. However, the accuracies and errors are lost in the \texttt{pyzdcf} code.
+Then, I estimated the time-lags of each pair of light-curves. For this, I used \texttt{pyzdcf} \cite{pyzdcf_docs}, a python implementation of a simpler version of \texttt{PLIKE}, a Fortran code \cite{Alexander_2013, tal_alexander_software}.
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{../CCF_plots/x_y_bands_43_final.pdf}
-	\caption{CCF of the artificial light-curve with $\log L = 43 L_{\odot}$}.
-	\label{fig:ccf_art_lcs_L43}
-\end{figure}
+The method used here is a cross-correlation function (CCF) \cite{White_Peterson_1994}:
+\begin{align}
+	CCF(\tau) = CCF_{YX}(\tau) - ACF_{X}(\tau),
+\end{align}
 
-\begin{figure}[p]
-	\centering
-	\includegraphics[width=0.8\textwidth]{../CCF_plots/x_y_bands_44_final.pdf}
-	\caption{CCF of the artificial light-curve with $\log L = 44 L_{\odot}$.}
-	\label{fig:ccf_art_lcs_L44}
-\end{figure}
+\noindent where $CCF$ is the cross-correlation function between the $X$ and $Y$ light curves, and $ACF$ is the auto-correlation function, i.e. the cross-correlation of $X$ with itself. The method implements a discrete CF (DCF) \cite{Edelson_Krolik_1988}, which does not need to fill in the gaps to obtain uniformly sampled light curves. Instead, it creates time bins of an appropiate size, and calculates a discrete correlation. Then, the z-DCF method uses a z-transformed DCF \cite{Alexander_1997} over equally populated bins.
 
-\begin{figure}[p]
-	\centering
-	\includegraphics[width=0.8\textwidth]{../CCF_plots/x_y_bands_45_final.pdf}
-	\caption{CCF of the artificial light-curve with $\log L = 45 L_{\odot}$.}
-	\label{fig:ccf_art_lcs_L45}
-\end{figure}
+The results are plotted in Figures \ref{fig:ccf_art_lcs_L43}, \ref{fig:ccf_art_lcs_L44} and \ref{fig:ccf_art_lcs_L45}. The estimations closely match the time-lag posted by the \texttt{lc\_two\_bands} function. They are 9.0, 33.0 and 115.0 days respectively. Thus, these are very good results. However, the accuracies and errors are lost in the \texttt{pyzdcf} code.
 
 I note that the more luminous AGN have a larger time-lag (see Figure \ref{fig:art_lum_vs_lag}). This can be explained with the size or supermassive black hole (SMBH) mass versus luminosity relation \cite{Kaspi_2007, Bentz_2009}:
 \begin{align}
@@ -121,37 +88,29 @@ I note that the more luminous AGN have a larger time-lag (see Figure \ref{fig:ar
 
 Different authors have estimated $\alpha$. For example, \cite{Kaspi_2005} obtained an estimate of $0.665 \pm 0.069$ and \cite{Bentz_2009} obtained one equal to $0.519 + 0.063 - 0.066$. I plotted this relation to see how it looks like for these artificial light-curves in Figure \ref{fig:art_lum_vs_lag}. None of these slopes fit the artificial light curves, so by trial and error I found that a slope of 0.340 somewhat fits them. The difference might be due to the fact that these light-curves are artificial, or perhaps a redshift correction should be done first.
 
-\begin{wrapfigure}{L}{0.48\textwidth}
-	\begin{center}
-		\includegraphics[width=0.8\textwidth]{../other_plots/artificial_L_vs_timelag.pdf}
-	\end{center}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.45\textwidth]{../other_plots/artificial_L_vs_timelag.pdf}
 	\caption{Luminosity versus time-lags for the artificial light-curves.}
 	\label{fig:art_lum_vs_lag}
-\end{wrapfigure}
+\end{figure}
 
 
 \section{Gapped Light-Curves}
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{../artificial_x_y_5days.pdf}
-	\caption{CCF of the artificial light-curve with $\log L = 43 L_{\odot}$ with detections every five days.}.
-	\label{fig:ccf_art_lc_L43_5days}
-\end{figure}
+Then, I created three pairs of gapped light curves based on the artificial one with $\log{L} = 43 L_{\odot}$. They have three different cadences:
+\begin{enumerate}
+	\item One detection every five days.
+	
+	\item A pattern of a month with detections everyday and then a month of no detections.
+	
+	\item A pattern of three months of observations eveyrday, then six months of observations once a month and a gap of three months.
+	
+\end{enumerate}
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{../artificial_x_y_month.pdf}
-	\caption{CCF of the artificial light-curve with $\log L = 43 L_{\odot}$ with detections in a pattern of every day for one month and then a gap of a month.}.
-	\label{fig:ccf_art_lc_L43_month}
-\end{figure}
+The correct time-lag for this light curve is 9 days. However, the lag estimated for the one with the first cadence was $15.0 (+ 0.0 - 0.0)$ days, for the second cadence it was $9.0 (+ 2.0 - 0.0)$, and for the last one it was $135.4 (+ 36.0 - 10.0)$. I initially expected the first cadence to produce a correct estimate, but even though it is wuite close to the correct lag, it is not fully precise. I think this happens because since the frequency of the detections is more sparse, the flares that occur in the light curve can fit into one of the gaps, artificially producing a larger value of the CCF function.
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{../artificial_x_y_lgaps.pdf}
-	\caption{CCF of the artificial light-curve with $\log L = 43 L_{\odot}$ with detections in a pattern of three month of observations every day, followed by six months of observations with a frequency of once per month and then a gap of three months.}.
-	\label{fig:ccf_art_lc_L43_lgaps}
-\end{figure}
+ The second cadence did produce the expected 9 days of time-lag, but this estimate now has 
 
 % ----------------------------------------------------------------------------
 
@@ -164,5 +123,79 @@ Different authors have estimated $\alpha$. For example, \cite{Kaspi_2005} obtain
 
 \bibliographystyle{natbib}
 \bibliography{references}
+
+% ----------------------------------------------------------------------------
+
+\section*{Figures}
+
+\subsection{Artificial Light Curves}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../lc_plots/art_lcs_logL43.pdf}
+	\caption{Artificial light-curve of an AGN with $\log L = 43 L_{\odot}$ and a time-lasg of 9.86 days.}
+	\label{fig:art_lcs_L43}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../lc_plots/art_lcs_logL44.pdf}
+	\caption{Artificial light-curve of an AGN with $\log L = 44 L_{\odot}$ and a time-lag of 33.65 days.}
+	\label{fig:art_lcs_L44}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../lc_plots/art_lcs_logL45.pdf}
+	\caption{Artificial light-curve of an AGN with $\log L = 45 L_{\odot}$ and a time-lag of 114.82 days.}
+	\label{fig:art_lcs_L45}
+\end{figure}
+
+\subsection{CCF of Artificial Light Curves}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../CCF_plots/x_y_bands_43_final.pdf}
+	\caption{CCF of the artificial light-curve with $\log L = 43 L_{\odot}$}.
+	\label{fig:ccf_art_lcs_L43}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../CCF_plots/x_y_bands_44_final.pdf}
+	\caption{CCF of the artificial light-curve with $\log L = 44 L_{\odot}$.}
+	\label{fig:ccf_art_lcs_L44}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../CCF_plots/x_y_bands_45_final.pdf}
+	\caption{CCF of the artificial light-curve with $\log L = 45 L_{\odot}$.}
+	\label{fig:ccf_art_lcs_L45}
+\end{figure}
+
+\subsection{CCF of Gapped Light Curves}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../CCF_plots/artificial_x_y_5days.pdf}
+	\caption{CCF of the artificial light-curve with $\log L = 43 L_{\odot}$ with detections every five days.}.
+	\label{fig:ccf_art_lc_L43_5days}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../CCF_plots/artificial_x_y_month.pdf}
+	\caption{CCF of the artificial light-curve with $\log L = 43 L_{\odot}$ with detections in a pattern of every day for one month and then a gap of a month.}.
+	\label{fig:ccf_art_lc_L43_month}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../CCF_plots/artificial_x_y_lgaps.pdf}
+	\caption{CCF of the artificial light-curve with $\log L = 43 L_{\odot}$ with detections in a pattern of three month of observations every day, followed by six months of observations with a frequency of once per month and then a gap of three months.}.
+	\label{fig:ccf_art_lc_L43_lgaps}
+\end{figure}
+
 
 \end{document}

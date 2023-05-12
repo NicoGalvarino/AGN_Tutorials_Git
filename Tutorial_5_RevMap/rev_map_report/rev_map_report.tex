@@ -75,16 +75,18 @@ The method used here is a cross-correlation function (CCF) \cite{White_Peterson_
 	CCF(\tau) = CCF_{YX}(\tau) - ACF_{X}(\tau),
 \end{align}
 
-\noindent where $CCF$ is the cross-correlation function between the $X$ and $Y$ light curves, and $ACF$ is the auto-correlation function, i.e. the cross-correlation of $X$ with itself. The method implements a discrete CF (DCF) \cite{Edelson_Krolik_1988}, which does not need to fill in the gaps to obtain uniformly sampled light curves. Instead, it creates time bins of an appropiate size, and calculates a discrete correlation. Then, the z-DCF method uses a z-transformed DCF \cite{Alexander_1997} over equally populated bins.
+\noindent where $CCF$ is the cross-correlation function between the $X$ and $Y$ light curves, and $ACF$ is the auto-correlation function, i.e. the cross-correlation of $X$ with itself. The method implements a discrete CF (DCF) \cite{Edelson_Krolik_1988}, which does not need to fill in the gaps to obtain uniformly sampled light curves. Instead, it creates time bins of an appropiate size, and calculates a discrete correlation. Then, the z-DCF method uses a z-transformed DCF \cite{Alexander_1997} over equally populated bins, which makes it more robust against gaps and non-uniformly sampled light curves.
 
 The results are plotted in Figures \ref{fig:ccf_art_lcs_L43}, \ref{fig:ccf_art_lcs_L44} and \ref{fig:ccf_art_lcs_L45}. The estimations closely match the time-lag posted by the \texttt{lc\_two\_bands} function. They are 9.0, 33.0 and 115.0 days respectively. Thus, these are very good results. However, the accuracies and errors are lost in the \texttt{pyzdcf} code.
+
+If I did not have the correct pre-known values of the time-lag, another way of telling if the cross-correlation methos converged properly is finding a single clear gap in the CCF plot. This happens in the three cases, so the estimates are reliable.
 
 I note that the more luminous AGN have a larger time-lag (see Figure \ref{fig:art_lum_vs_lag}). This can be explained with the size or supermassive black hole (SMBH) mass versus luminosity relation \cite{Kaspi_2007, Bentz_2009}:
 \begin{align}
 	R_{BLR} \propto L^{\alpha}
 \end{align}
 
-[PHYSICS OF THE THING]
+This relation has to do with the connection between the mass of the SMBH and the velocity dispersion of the bulge. Thus, it is crucially important for accurate estimations of the mass of the SMBH.
 
 Different authors have estimated $\alpha$. For example, \cite{Kaspi_2005} obtained an estimate of $0.665 \pm 0.069$ and \cite{Bentz_2009} obtained one equal to $0.519 + 0.063 - 0.066$. I plotted this relation to see how it looks like for these artificial light-curves in Figure \ref{fig:art_lum_vs_lag}. None of these slopes fit the artificial light curves, so by trial and error I found that a slope of 0.340 somewhat fits them. The difference might be due to the fact that these light-curves are artificial, or perhaps a redshift correction should be done first.
 
@@ -108,15 +110,23 @@ Then, I created three pairs of gapped light curves based on the artificial one w
 	
 \end{enumerate}
 
-The correct time-lag for this light curve is 9 days. However, the lag estimated for the one with the first cadence was $15.0 (+ 0.0 - 0.0)$ days, for the second cadence it was $9.0 (+ 2.0 - 0.0)$, and for the last one it was $135.4 (+ 36.0 - 10.0)$. I initially expected the first cadence to produce a correct estimate, but even though it is wuite close to the correct lag, it is not fully precise. I think this happens because since the frequency of the detections is more sparse, the flares that occur in the light curve can fit into one of the gaps, artificially producing a larger value of the CCF function.
+The correct time-lag for this light curve is 9 days. However, the lag estimated for the one with the first cadence was $15.0 \pm 0.0$ days, for the second cadence it was $9.0 (+ 2.0 - 0.0)$, and for the last one it was $135.4 (+ 36.0 - 10.0)$. I initially expected the first cadence to produce a correct estimate, but even though it is wuite close to the correct lag, it is not fully precise. I think this happens because since the frequency of the detections is more sparse, the flares that occur in the light curve can fit into one of the gaps, artificially producing a larger value of the CCF function. The second cadence did produce the expected 9 days of time-lag, but this estimate now has non-neglectable uncertainties. Then, for the third cadence, the estimate is off by two orders of magnitude and has significant uncertainty, to the point that I would consider the estimate not reliable at all. It has multiple peaks in the ACF plot, and the CCF peak is not very clearly marked.
 
- The second cadence did produce the expected 9 days of time-lag, but this estimate now has 
+Based on this, the uncertainties in the CCF method come from non-uniformly sampled light curves, with gaps with different lengths. This creates more unreliability than the detections being further apart from each other but having a consistent frequency.
 
 % ----------------------------------------------------------------------------
 
 \section*{Task 2: NGC 4395}
 
-% \cite{Edri_2012}
+The NGC 4395 galaxy \cite{simbad_ngc4395} is a nearby low-luminosity Seyfert 1 galaxy with redshift 0.001064. It has a magnitude of 14.55 and $\lambda L_{\lambda} ~ 7 \times 10^{39}$ erg s$^{-1}$ \cite{Abazajian_2009, Edri_2012}. I downloaded the SDSS light curves used by \cite{Edri_2012} from Vizier. These are in the i, r and g filters, corresponding to only continuum, continuum with the H$\alpha$ line, and continuum with the H$beta$ line respectively. These light-curves are plotted in Figure \ref{fig:ngc4395_lcs} in units of flux and hours.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../lc_plots/ngc4395_sdss_lcs.pdf}
+	\caption{SDSS light curves for the NGC 4395 AGN (filters i, r and g).}
+	\label{fig:ngc4395_lcs}
+\end{figure}
+
 
 
 % ----------------------------------------------------------------------------

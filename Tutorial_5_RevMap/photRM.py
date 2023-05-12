@@ -600,7 +600,8 @@ def delta_ccf(acf, ccf):
 
 
 def plot_ccf_acf(delta, ccf, acf, locator=10, save=False, save_filename=None, peak=False, 
-                 tau=0, err=(0,0), lims_x=(-20,80), lims_y=(-0.25,1.25), lims_y_ax2=(-0.25, 0.25)):
+                 tau=0, err=(0,0), lims_x=(-20,80), lims_y=(-0.25,1.25), lims_y_ax2=(-0.25, 0.25), 
+                 time_units='days'):
     """
     Plot CCF, ACF and their difference. Optionally, you can add peak location 
     (tau) and associated errors.
@@ -669,7 +670,7 @@ def plot_ccf_acf(delta, ccf, acf, locator=10, save=False, save_filename=None, pe
         ax2.vlines(tau, ymin=-1, ymax= delta['dcf'][nearest_idx],linestyles='dashed', colors='royalblue')
         ax2.axvspan(tau+err_low, tau+err_high, alpha=0.2)
     
-    ax2.set_xlabel("Time (days)", fontsize=17, labelpad=8)
+    ax2.set_xlabel("Time ("+time_units+")", fontsize=17, labelpad=8)
     ax2.grid(which='major', axis='x', linestyle='--')
     ax2.xaxis.set_major_locator(plt.MultipleLocator(locator))
     ax2.yaxis.set_major_locator(plt.MultipleLocator(0.1))
@@ -677,7 +678,7 @@ def plot_ccf_acf(delta, ccf, acf, locator=10, save=False, save_filename=None, pe
     ax2.set_ylim(lims_y_ax2)
     ax2.set_xlim(x1,x2)
     if peak==True:
-        ax2.text(0.72,0.05, r'$\tau$ = {:.1f} ({:.1f},+{:.1f}) d'.format(tau,err_low,err_high), transform=ax2.transAxes, size=12.5)
+        ax2.text(0.72,0.05, r'$\tau$ = {:.1f} ({:.1f},+{:.1f})'.format(tau,err_low,err_high)+' '+time_units[0], transform=ax2.transAxes, size=12.5)
     
     fig.text(0.03, 0.5, "Correlation (arbit. units)", va='center', rotation='vertical',fontsize=18)
     if save==True:

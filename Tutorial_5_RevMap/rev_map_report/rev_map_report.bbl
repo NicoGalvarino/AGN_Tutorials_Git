@@ -1,8 +1,92 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{Kovacevic_2021}
+A.~B. {Kova{\v{c}}evi{\'c}}, D.~{Ili{\'c}}, L.~{\v{C}}. {Popovi{\'c}},
+  V.~{Radovi{\'c}}, I.~{Jankov}, I.~{Yoon}, N.~{Caplar},
+  I.~{{\v{C}}vorovi{\'c}-Hajdinjak}, and S.~{Simi{\'c}}, ``{On possible proxies
+  of AGN light-curves cadence selection in future time domain surveys},'' {\em
+  MNRAS}, vol.~505, pp.~5012--5028, Aug. 2021.
+
+\bibitem{Kelly_2009}
+B.~C. {Kelly}, J.~{Bechtold}, and A.~{Siemiginowska}, ``{Are the Variations in
+  Quasar Optical Flux Driven by Thermal Fluctuations?},'' {\em ApJ}, vol.~698,
+  pp.~895--910, June 2009.
+
+\bibitem{Jankov_2022}
+I.~{Jankov}, A.~B. {Kova{\v{c}}evi{\'c}}, D.~{Ili{\'c}}, L.~{\v{C}}.
+  {Popovi{\'c}}, V.~{Radovi{\'c}}, I.~{{\v{C}}vorovi{\'c}-Hajdinjak},
+  R.~{Nikutta}, and P.~{S{\'a}nchez-S{\'a}ez}, ``{Photoreverberation mapping of
+  quasars in the context of Legacy Survey of Space and Time observing
+  strategies},'' {\em Astronomische Nachrichten}, vol.~343, p.~e210090, Jan.
+  2022.
+
+\bibitem{Chelouche_Daniel_2012}
+D.~{Chelouche} and E.~{Daniel}, ``{Photometric Reverberation Mapping of the
+  Broad Emission Line Region in Quasars},'' {\em ApJ}, vol.~747, p.~62, Mar.
+  2012.
+
+\bibitem{pyzdcf_docs}
+``pyzdcf documentation.''
+  \url{https://pyzdcf.readthedocs.io/en/latest/pyZDCF/pyZDCF.html}, Date of
+  access: May 2023.
+
+\bibitem{Alexander_2013}
+T.~Alexander, ``Improved agn light curve analysis with the z-transformed
+  discrete correlation function,'' 2013.
+
+\bibitem{tal_alexander_software}
+``z-dcf, prof. tal alexander.''
+  \url{https://www.weizmann.ac.il/particle/tal/research-activities/software},
+  Date of access: May 2023.
+
+\bibitem{White_Peterson_1994}
+R.~J. {White} and B.~M. {Peterson}, ``{Comments on Cross-Correlation
+  Methodology in Variability Studies of Active Galactic Nuclei},'' {\em PASP},
+  vol.~106, p.~879, Aug. 1994.
+
+\bibitem{Edelson_Krolik_1988}
+R.~A. {Edelson} and J.~H. {Krolik}, ``{The Discrete Correlation Function: A New
+  Method for Analyzing Unevenly Sampled Variability Data},'' {\em ApJ},
+  vol.~333, p.~646, Oct. 1988.
+
+\bibitem{Alexander_1997}
+T.~{Alexander}, ``{Is AGN Variability Correlated with Other AGN Properties?
+  ZDCF Analysis of Small Samples of Sparse Light Curves},'' in {\em
+  Astronomical Time Series} (D.~{Maoz}, A.~{Sternberg}, and E.~M. {Leibowitz},
+  eds.), vol.~218 of {\em Astrophysics and Space Science Library}, p.~163, Jan.
+  1997.
+
+\bibitem{Kaspi_2007}
+S.~{Kaspi}, W.~N. {Brandt}, D.~{Maoz}, H.~{Netzer}, D.~P. {Schneider}, and
+  O.~{Shemmer}, ``{Reverberation Mapping of High-Luminosity Quasars: First
+  Results},'' {\em ApJ}, vol.~659, pp.~997--1007, Apr. 2007.
+
+\bibitem{Bentz_2009}
+M.~C. Bentz, B.~M. Peterson, H.~Netzer, R.~W. Pogge, and M.~Vestergaard, ``The
+  radius–luminosity relationship for active galactic nuclei: The effect of
+  host-galaxy starlight on luminosity measurements. ii. the full sample of
+  reverberation-mapped agns,'' {\em The Astrophysical Journal}, vol.~697,
+  p.~160, apr 2009.
+
+\bibitem{Kaspi_2005}
+S.~Kaspi, D.~Maoz, H.~Netzer, B.~M. Peterson, M.~Vestergaard, and B.~T.
+  Jannuzi, ``The relationship between luminosity and broad-line region size in
+  active galactic nuclei,'' {\em The Astrophysical Journal}, vol.~629, p.~61,
+  aug 2005.
+
+\bibitem{simbad_ngc4395}
+``Simbad page of ngc 4395.''
+  \url{http://simbad.cds.unistra.fr/simbad/sim-id?Ident=NGC+4395&NbIdent=1&Radius=2&Radius.unit=arcmin&submit=submit+id},
+  Date of access: May 2023.
+
+\bibitem{Abazajian_2009}
+K.~N. Abazajian, et al., ``The seventh data release of
+  the sloan digital sky survey,'' {\em The Astrophysical Journal Supplement
+  Series}, vol.~182, p.~543, may 2009.
 
 \bibitem{Edri_2012}
 H.~{Edri}, S.~E. {Rafter}, D.~{Chelouche}, S.~{Kaspi}, and E.~{Behar},
-  ``{Broadband Photometric Reverberation Mapping of NGC 4395},'' {\em \apj},
+  ``{Broadband Photometric Reverberation Mapping of NGC 4395},'' {\em ApJ},
   vol.~756, p.~73, Sept. 2012.
 
 \end{thebibliography}

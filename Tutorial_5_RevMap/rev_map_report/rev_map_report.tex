@@ -118,7 +118,9 @@ Based on this, the uncertainties in the CCF method come from non-uniformly sampl
 
 \section*{Task 2: NGC 4395}
 
-The NGC 4395 galaxy \cite{simbad_ngc4395} is a nearby low-luminosity Seyfert 1 galaxy with redshift 0.001064. It has a magnitude of 14.55 and $\lambda L_{\lambda} ~ 7 \times 10^{39}$ erg s$^{-1}$ \cite{Abazajian_2009, Edri_2012}. I downloaded the SDSS light curves used by \cite{Edri_2012} from Vizier. These are in the i, r and g filters, corresponding to only continuum, continuum with the H$\alpha$ line, and continuum with the H$beta$ line respectively. These light-curves are plotted in Figure \ref{fig:ngc4395_lcs} in units of flux and hours.
+The NGC 4395 galaxy \cite{simbad_ngc4395} is a nearby low-luminosity Seyfert 1 galaxy with redshift 0.001064. It has a magnitude of 14.55 and $\lambda L_{\lambda} ~ 7 \times 10^{39}$ erg s$^{-1}$ \cite{Abazajian_2009, Edri_2012}. I downloaded the SDSS light curves used by \cite{Edri_2012} from Vizier. These are in the i, r and g filters, corresponding to only continuum, continuum with the H$\alpha$ line, and continuum with the H$\beta$ line respectively. These light-curves are plotted in Figure \ref{fig:ngc4395_lcs} in units of flux and hours. Using \texttt{pyzdcf}, I calculated the time-lag between the i and r filter, and obtained a lag of $4.75 \pm 0.00$ hours.
+
+In their work, \cite{Edri_2012} obtained a lag of $3.46 (+1.59-0.36)$. My estimate lies within the uncertainty range of their results, so both estimates agree. The goal of their work was to test the photometric RM method in contrast to the spectroscopic one. The latter requires spectra with high-resolution and resolved lines, making it expensive and time consuming. The photometric RM method is less accurate, but it is robust, quick and simple to implement \cite{Chelouche_Daniel_2012}. So, it is an incredibly strong tool. For instance, it will be helpful when tracking the immense amount of quasars ($10^7$) that the LSST will find. It could also be used as a mechanism to identify interesting and particular sources, and then proceed to conduct spectroscopic RM on them.
 
 \begin{figure}[h]
 	\centering
@@ -150,7 +152,7 @@ The NGC 4395 galaxy \cite{simbad_ngc4395} is a nearby low-luminosity Seyfert 1 g
 
 \section*{Figures}
 
-\subsection{Artificial Light Curves}
+% \subsection{Artificial Light Curves}
 
 \begin{figure}[h]
 	\centering
@@ -173,7 +175,7 @@ The NGC 4395 galaxy \cite{simbad_ngc4395} is a nearby low-luminosity Seyfert 1 g
 	\label{fig:art_lcs_L45}
 \end{figure}
 
-\subsection{CCF of Artificial Light Curves}
+% \subsection{CCF of Artificial Light Curves}
 
 \begin{figure}[h]
 	\centering
@@ -196,7 +198,7 @@ The NGC 4395 galaxy \cite{simbad_ngc4395} is a nearby low-luminosity Seyfert 1 g
 	\label{fig:ccf_art_lcs_L45}
 \end{figure}
 
-\subsection{CCF of Gapped Light Curves}
+% \subsection{CCF of Gapped Light Curves}
 
 \begin{figure}[h]
 	\centering

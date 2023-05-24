@@ -1,0 +1,201 @@
+% Template:     Template Auxiliar LaTeX
+% Documento:    Archivo principal
+% Versión:      7.1.5 (15/03/2021)
+% Codificación: UTF-8
+%
+% Autor: Pablo Pizarro R.
+%        Facultad de Ciencias Físicas y Matemáticas
+%        Universidad de Chile
+%        pablo@ppizarror.com
+%
+% Sitio web:    [https://latex.ppizarror.com/auxiliares]
+% Licencia MIT: [https://opensource.org/licenses/MIT]
+
+% CREACIÓN DEL DOCUMENTO
+\documentclass[letterpaper, oneside]{article}
+
+% INFORMACIÓN DEL DOCUMENTO
+\def\tituloauxiliar {Classifications of Emission-Line Galaxies with SDSS \& WISE}
+\def\temaatratar {Final Project}
+
+\def\autordeldocumento {Nicolás Guerra-Varas}
+\def\nombredelcurso {Introduction to AGN}
+\def\codigodelcurso {MASS}
+
+\def\nombreuniversidad {University of Belgrade}
+\def\nombrefacultad {Faculty of Mathematics}
+\def\departamentouniversidad {Departament of Astronomy}
+\def\imagendepartamento {img/mass}
+\def\imagendepartamentoparams {height=1.9cm}
+\def\localizacionuniversidad {Belgrade, Serbia}
+
+% EQUIPO DOCENTE
+\def\equipodocente {
+	\textbf{Nicolás Guerra-Varas} \\
+	Professor Dragana Ili\'c \\
+	Tutor Isidora Jankov \\
+    \today \\
+%    \multicolumn{2}{l}{\today} \\
+	% \multicolumn{2}{l}{\localizacionuniversidad}
+}
+
+% IMPORTACIÓN DEL TEMPLATE
+\input{template}
+
+% INICIO DE PÁGINAS
+\begin{document}
+	
+% CONFIGURACIÓN DE PÁGINA Y ENCABEZADOS
+\templatePagecfg
+
+% ----------------------------------------------------------------------------
+
+\section*{Task 1: BPT and WHAN on a Complete Sample}
+
+
+
+\section{BPT Diagrams}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.1\textwidth]{../BPT_niiHa_oiiiHb.pdf}
+	\caption{BPT Diagram: [NII]/H$\alpha$ vs [OIII]/H$\beta$.}
+	\label{fig:BPT_niiHa_oiiiHb}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.1\textwidth]{../BPT_sii67176731Ha_oiiiHb.pdf}
+	\caption{BPT Diagram: [SII]/H$\alpha$ vs [OIII]/H$\beta$.}
+	\label{fig:BPT_siiHa_oiiiHb}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.1\textwidth]{../BPT_oiHa_oiiiHb.pdf}
+	\caption{BPT Diagram: [OII]/H$\alpha$ vs [OIII]/H$\beta$.}
+	\label{fig:BPT_oiHa_oiiiHb}
+\end{figure}
+
+\section{WHAN Diagram}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.1\textwidth]{../WHAN_diagram.pdf}
+	\caption{Whan Diagram: [NII]/H$\alpha$ vs $W_{H_{\alpha}}$ [Ang].}
+	\label{fig:WHAN}
+\end{figure}
+
+% ----------------------------------------------------------------------------
+
+\section*{Task 2: BPT and TBT on a Subsample}
+
+\section{BPT Diagram}
+
+
+
+\section{TBT Diagram}
+
+
+
+% ----------------------------------------------------------------------------
+
+\section*{Task 3: WISE color-color diagram on an AGN Subsample}
+
+
+
+
+% ----------------------------------------------------------------------------
+
+\pagebreak
+\appendix
+
+\begin{sourcecode}[\label{sdss_query}]{sql}{SQL Query}
+SELECT TOP 30000 s.specobjid, s.plate, s.mjd, s.fiberID, 
+s.subclass, s.z, 
+g.oiii_5007_flux, g.oiii_5007_flux_err, 
+g.h_alpha_flux, g.h_alpha_flux_err, 
+g.h_beta_flux, g.h_beta_flux_err, 
+g.nii_6584_flux, g.nii_6584_flux_err, 
+g.sii_6717_flux, g.sii_6717_flux_err, 
+g.sii_6731_flux, g.sii_6731_flux_err, 
+g.oi_6300_flux, g.oi_6300_flux_err, 
+g.h_alpha_reqw, g.h_alpha_reqw_err
+
+FROM GalSpecLine AS g 
+JOIN SpecObjAll AS s ON g.specobjid = s.specobjid
+
+WHERE
+(s.class = 'QSO' or s.class = 'GALAXY')
+AND s.z <= 0.3
+AND 2.355 * g.sigma_balmer <= 700
+AND 2.355 * g.sigma_forbidden <= 700
+AND g.oiii_5007_flux <> 0
+AND (g.oiii_5007_flux / g.oiii_5007_flux_err) > 1
+AND g.h_alpha_flux <> 0
+AND (g.h_alpha_flux / g.h_alpha_flux_err) > 1
+AND g.h_beta_flux <> 0
+AND (g.h_beta_flux / g.h_beta_flux_err) > 1
+AND g.nii_6584_flux <> 0
+AND (g.nii_6584_flux / g.nii_6584_flux_err) > 1
+AND g.sii_6717_flux <> 0
+AND (g.sii_6717_flux / g.sii_6717_flux_err) > 1
+AND g.sii_6731_flux <> 0
+AND (g.sii_6731_flux / g.sii_6731_flux_err) > 1
+AND g.oi_6300_flux <> 0
+AND (g.oi_6300_flux / g.oi_6300_flux_err) > 1
+\end{sourcecode}
+
+\begin{sourcecode}[\label{sdss_query_subsample}]{sql}{SQL Query: Defining a Sub-Sample}
+SELECT TOP 30000 s.specobjid, s.plate, s.mjd, s.fiberID, 
+s.subclass, s.z, 
+g.oiii_5007_flux, g.oiii_5007_flux_err, 
+g.h_alpha_flux, g.h_alpha_flux_err, 
+g.h_beta_flux, g.h_beta_flux_err, 
+g.nii_6584_flux, g.nii_6584_flux_err, 
+g.sii_6717_flux, g.sii_6717_flux_err, 
+g.sii_6731_flux, g.sii_6731_flux_err, 
+g.oi_6300_flux, g.oi_6300_flux_err, 
+g.h_alpha_reqw, g.h_alpha_reqw_err, 
+g.neiii_3869_flux, g.neiii_3869_flux_err, 
+g.oii_3726_flux, g.oii_3726_flux_err, 
+g.oii_3729_flux, g.oii_3729_flux_err, 
+p.fiberMag_g, p.fiberMagErr_g, 
+p.fiberMag_z, p.fiberMagErr_z
+
+FROM GalSpecLine AS g 
+JOIN SpecObjAll AS s ON g.specobjid = s.specobjid
+JOIN PhotoObjAll AS p ON g.specobjid = p.objID
+
+WHERE
+(s.class = 'QSO' or s.class = 'GALAXY')
+AND s.z <= 0.3
+AND 2.355 * g.sigma_balmer <= 700
+AND 2.355 * g.sigma_forbidden <= 700
+AND s.snmedian_g >= 5
+AND g.oiii_5007_flux <> 0
+AND (g.oiii_5007_flux / g.oiii_5007_flux_err) > 1
+AND g.h_alpha_flux <> 0
+AND (g.h_alpha_flux / g.h_alpha_flux_err) > 1
+AND g.h_beta_flux <> 0
+AND (g.h_beta_flux / g.h_beta_flux_err) > 1
+AND g.nii_6584_flux <> 0
+AND (g.nii_6584_flux / g.nii_6584_flux_err) > 1
+AND g.sii_6717_flux <> 0
+AND (g.sii_6717_flux / g.sii_6717_flux_err) > 1
+AND g.sii_6731_flux <> 0
+AND (g.sii_6731_flux / g.sii_6731_flux_err) > 1
+AND g.oi_6300_flux <> 0
+AND (g.oi_6300_flux / g.oi_6300_flux_err) > 1
+AND g.neiii_3869_flux <> 0
+AND (g.neiii_3869_flux / g.neiii_3869_flux_err) > 1
+AND g.oii_3726_flux <> 0
+AND (g.oii_3726_flux / g.oii_3726_flux_err) > 1
+AND g.oii_3729_flux <> 0
+AND (g.oii_3729_flux / g.oii_3729_flux_err) > 1
+\end{sourcecode}
+
+\bibliographystyle{aa}
+\bibliography{references}
+
+\end{document}

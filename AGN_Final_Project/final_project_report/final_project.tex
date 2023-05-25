@@ -58,21 +58,21 @@
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1.1\textwidth]{../BPT_niiHa_oiiiHb.pdf}
+	\includegraphics[width=0.8\textwidth]{../BPT_Diagrams/BPT_niiHa_oiiiHb.pdf}
 	\caption{BPT Diagram: [NII]/H$\alpha$ vs [OIII]/H$\beta$.}
 	\label{fig:BPT_niiHa_oiiiHb}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1.1\textwidth]{../BPT_sii67176731Ha_oiiiHb.pdf}
+	\includegraphics[width=0.8\textwidth]{../BPT_Diagrams/BPT_sii67176731Ha_oiiiHb.pdf}
 	\caption{BPT Diagram: [SII]/H$\alpha$ vs [OIII]/H$\beta$.}
 	\label{fig:BPT_siiHa_oiiiHb}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1.1\textwidth]{../BPT_oiHa_oiiiHb.pdf}
+	\includegraphics[width=0.8\textwidth]{../BPT_Diagrams/BPT_oiHa_oiiiHb.pdf}
 	\caption{BPT Diagram: [OII]/H$\alpha$ vs [OIII]/H$\beta$.}
 	\label{fig:BPT_oiHa_oiiiHb}
 \end{figure}
@@ -81,7 +81,7 @@
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1.1\textwidth]{../WHAN_diagram.pdf}
+	\includegraphics[width=0.8\textwidth]{../WHAN_diagram.pdf}
 	\caption{Whan Diagram: [NII]/H$\alpha$ vs $W_{H_{\alpha}}$ [Ang].}
 	\label{fig:WHAN}
 \end{figure}
@@ -92,11 +92,21 @@
 
 \section{BPT Diagram}
 
-
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../BPT_Diagrams/BPT_sub_niiHa_oiiiHb.pdf}
+	\caption{BPT Diagram: [NII]/H$\alpha$ vs [OIII]/H$\beta$ for the defined subsample.}
+	\label{fig:BPT_subsample_niiHa_oiiiHb}
+\end{figure}
 
 \section{TBT Diagram}
 
-
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../TBT_sub_diagrams.pdf}
+	\caption{TBT Diagram: [NeIII]/[OII] vs $^0$(g-z) for the defined subsample.}
+	\label{fig:TBT_subsample}
+\end{figure}
 
 % ----------------------------------------------------------------------------
 
@@ -108,45 +118,13 @@
 % ----------------------------------------------------------------------------
 
 \pagebreak
+
 \appendix
 
-\begin{sourcecode}[\label{sdss_query}]{sql}{SQL Query}
-SELECT TOP 30000 s.specobjid, s.plate, s.mjd, s.fiberID, 
-s.subclass, s.z, 
-g.oiii_5007_flux, g.oiii_5007_flux_err, 
-g.h_alpha_flux, g.h_alpha_flux_err, 
-g.h_beta_flux, g.h_beta_flux_err, 
-g.nii_6584_flux, g.nii_6584_flux_err, 
-g.sii_6717_flux, g.sii_6717_flux_err, 
-g.sii_6731_flux, g.sii_6731_flux_err, 
-g.oi_6300_flux, g.oi_6300_flux_err, 
-g.h_alpha_reqw, g.h_alpha_reqw_err
+\section*{Appendix A: Computer Codes}
 
-FROM GalSpecLine AS g 
-JOIN SpecObjAll AS s ON g.specobjid = s.specobjid
-
-WHERE
-(s.class = 'QSO' or s.class = 'GALAXY')
-AND s.z <= 0.3
-AND 2.355 * g.sigma_balmer <= 700
-AND 2.355 * g.sigma_forbidden <= 700
-AND g.oiii_5007_flux <> 0
-AND (g.oiii_5007_flux / g.oiii_5007_flux_err) > 1
-AND g.h_alpha_flux <> 0
-AND (g.h_alpha_flux / g.h_alpha_flux_err) > 1
-AND g.h_beta_flux <> 0
-AND (g.h_beta_flux / g.h_beta_flux_err) > 1
-AND g.nii_6584_flux <> 0
-AND (g.nii_6584_flux / g.nii_6584_flux_err) > 1
-AND g.sii_6717_flux <> 0
-AND (g.sii_6717_flux / g.sii_6717_flux_err) > 1
-AND g.sii_6731_flux <> 0
-AND (g.sii_6731_flux / g.sii_6731_flux_err) > 1
-AND g.oi_6300_flux <> 0
-AND (g.oi_6300_flux / g.oi_6300_flux_err) > 1
-\end{sourcecode}
-
-\begin{sourcecode}[\label{sdss_query_subsample}]{sql}{SQL Query: Defining a Sub-Sample}
+	% 179980 objects without the TOP30000 requirement
+\begin{sourcecode}[\label{sdss_query}]{sql}{SQL Query: Defines Sample of 30,000 Objects}
 SELECT TOP 30000 s.specobjid, s.plate, s.mjd, s.fiberID, 
 s.subclass, s.z, 
 g.oiii_5007_flux, g.oiii_5007_flux_err, 
@@ -160,19 +138,18 @@ g.h_alpha_reqw, g.h_alpha_reqw_err,
 g.neiii_3869_flux, g.neiii_3869_flux_err, 
 g.oii_3726_flux, g.oii_3726_flux_err, 
 g.oii_3729_flux, g.oii_3729_flux_err, 
-p.fiberMag_g, p.fiberMagErr_g, 
-p.fiberMag_z, p.fiberMagErr_z
+p.psfMag_g, p.psfMagErr_g, 
+p.psfMag_z, p.psfMagErr_z
 
 FROM GalSpecLine AS g 
 JOIN SpecObjAll AS s ON g.specobjid = s.specobjid
-JOIN PhotoObjAll AS p ON g.specobjid = p.objID
+JOIN PhotoObjAll AS p ON s.bestobjid = p.objID
 
 WHERE
 (s.class = 'QSO' or s.class = 'GALAXY')
 AND s.z <= 0.3
 AND 2.355 * g.sigma_balmer <= 700
 AND 2.355 * g.sigma_forbidden <= 700
-AND s.snmedian_g >= 5
 AND g.oiii_5007_flux <> 0
 AND (g.oiii_5007_flux / g.oiii_5007_flux_err) > 1
 AND g.h_alpha_flux <> 0
@@ -193,7 +170,13 @@ AND g.oii_3726_flux <> 0
 AND (g.oii_3726_flux / g.oii_3726_flux_err) > 1
 AND g.oii_3729_flux <> 0
 AND (g.oii_3729_flux / g.oii_3729_flux_err) > 1
+AND (p.psfMag_g / p.psfMagErr_g) > 1
+AND (p.psfMag_z / p.psfMagErr_z) > 1
 \end{sourcecode}
+
+\section*{Appendix B: Tables}
+
+% \input{tab_all_galaxies}
 
 \bibliographystyle{aa}
 \bibliography{references}

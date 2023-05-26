@@ -123,10 +123,10 @@
 
 \section*{Appendix A: Computer Codes}
 
-	% 179980 objects without the TOP30000 requirement
+	% 205379 objects without the TOP30000 requirement
 \begin{sourcecode}[\label{sdss_query}]{sql}{SQL Query: Defines Sample of 30,000 Objects}
 SELECT TOP 30000 s.specobjid, s.plate, s.mjd, s.fiberID, 
-s.subclass, s.z, 
+s.ra, s.dec, s.subclass, s.z, 
 g.oiii_5007_flux, g.oiii_5007_flux_err, 
 g.h_alpha_flux, g.h_alpha_flux_err, 
 g.h_beta_flux, g.h_beta_flux_err, 
@@ -147,6 +147,55 @@ JOIN PhotoObjAll AS p ON s.bestobjid = p.objID
 
 WHERE
 (s.class = 'QSO' or s.class = 'GALAXY')
+AND s.z <= 0.3
+AND 2.355 * g.sigma_balmer <= 700
+AND 2.355 * g.sigma_forbidden <= 700
+AND g.oiii_5007_flux <> 0
+AND (g.oiii_5007_flux / g.oiii_5007_flux_err) > 1
+AND g.h_alpha_flux <> 0
+AND (g.h_alpha_flux / g.h_alpha_flux_err) > 1
+AND g.h_beta_flux <> 0
+AND (g.h_beta_flux / g.h_beta_flux_err) > 1
+AND g.nii_6584_flux <> 0
+AND (g.nii_6584_flux / g.nii_6584_flux_err) > 1
+AND g.sii_6717_flux <> 0
+AND (g.sii_6717_flux / g.sii_6717_flux_err) > 1
+AND g.sii_6731_flux <> 0
+AND (g.sii_6731_flux / g.sii_6731_flux_err) > 1
+AND g.oi_6300_flux <> 0
+AND (g.oi_6300_flux / g.oi_6300_flux_err) > 1
+AND g.neiii_3869_flux <> 0
+AND (g.neiii_3869_flux / g.neiii_3869_flux_err) > 1
+AND g.oii_3726_flux <> 0
+AND (g.oii_3726_flux / g.oii_3726_flux_err) > 1
+AND g.oii_3729_flux <> 0
+AND (g.oii_3729_flux / g.oii_3729_flux_err) > 1
+AND (p.psfMag_g / p.psfMagErr_g) > 1
+AND (p.psfMag_z / p.psfMagErr_z) > 1
+\end{sourcecode}
+
+\begin{sourcecode}[\label{wise_crossid_query}]{sql}{SQL Query: Cross-ID to find WISE Colors}
+SELECT --count(*)
+s.specobjid, s.plate, s.mjd, s.fiberID, 
+s.ra, s.dec, s.subclass, s.z, 
+W.w1mpro as w1, W.w2mpro as w2, W.w3mpro as w3, 
+W.w1sigmpro as w1, W.w2sigmpro as w2, W.w3sigmpro as w3, 
+W.w1flux, W.w2flux, W.w3flux, 
+W.w1sigflux, W.w2sigflux, W.w3sigflux
+
+FROM GalSpecLine AS g 
+JOIN SpecObjAll AS s ON g.specobjid = s.specobjid
+JOIN PhotoObjAll AS p ON s.bestobjid = p.objID
+JOIN wise_xmatch AS x ON s.bestobjid = x.sdss_objid JOIN wise_allsky AS w ON w.cntr = x.wise_cntr
+
+WHERE
+(s.class = 'QSO' or s.class = 'GALAXY')
+AND (W.w1flux / W.w1sigflux) > 1
+AND (W.w2flux / W.w2sigflux) > 1
+AND (W.w3flux / W.w3sigflux) > 1
+AND (W.w1mpro / W.w1sigmpro) > 1
+AND (W.w2mpro / W.w2sigmpro) > 1
+AND (W.w3mpro / W.w3sigmpro) > 1
 AND s.z <= 0.3
 AND 2.355 * g.sigma_balmer <= 700
 AND 2.355 * g.sigma_forbidden <= 700

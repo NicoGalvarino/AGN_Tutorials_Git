@@ -1,0 +1,85 @@
+\begin{thebibliography}{10}
+
+\bibitem{Baldwin_1981}
+J.~A. Baldwin, M.~M. Phillips, and R.~Terlevich, ``Classification parameters
+  for the emission-line spectra of extragalactic objects.,'' {\em Publications
+  of the Astronomical Society of the Pacific}, vol.~93, p.~5, feb 1981.
+
+\bibitem{Cid_2011}
+R.~{Cid Fernandes}, G.~{Stasi{\'n}ska}, A.~{Mateus}, and N.~{Vale Asari}, ``{A
+  comprehensive classification of galaxies in the Sloan Digital Sky Survey: how
+  to tell true from fake AGN?},'' {\em MNRAS}, vol.~413, pp.~1687--1699, May
+  2011.
+
+\bibitem{Wright_2010}
+E.~L. {Wright}, P.~R.~M. {Eisenhardt}, A.~K. {Mainzer}, M.~E. {Ressler}, R.~M.
+  {Cutri}, T.~{Jarrett}, J.~D. {Kirkpatrick}, D.~{Padgett}, R.~S. {McMillan},
+  M.~{Skrutskie}, S.~A. {Stanford}, M.~{Cohen}, R.~G. {Walker}, J.~C. {Mather},
+  D.~{Leisawitz}, I.~{Gautier}, Thomas~N., I.~{McLean}, D.~{Benford}, C.~J.
+  {Lonsdale}, A.~{Blain}, B.~{Mendez}, W.~R. {Irace}, V.~{Duval}, F.~{Liu},
+  D.~{Royer}, I.~{Heinrichsen}, J.~{Howard}, M.~{Shannon}, M.~{Kendall}, A.~L.
+  {Walsh}, M.~{Larsen}, J.~G. {Cardon}, S.~{Schick}, M.~{Schwalm}, M.~{Abid},
+  B.~{Fabinsky}, L.~{Naes}, and C.-W. {Tsai}, ``{The Wide-field Infrared Survey
+  Explorer (WISE): Mission Description and Initial On-orbit Performance},''
+  {\em AJ}, vol.~140, pp.~1868--1881, Dec. 2010.
+
+\bibitem{Mateos_2012}
+S.~{Mateos}, A.~{Alonso-Herrero}, F.~J. {Carrera}, A.~{Blain}, M.~G. {Watson},
+  X.~{Barcons}, V.~{Braito}, P.~{Severgnini}, J.~L. {Donley}, and D.~{Stern},
+  ``{Using the Bright Ultrahard XMM-Newton survey to define an IR selection of
+  luminous AGN based on WISE colours},'' {\em MNRAS}, vol.~426, pp.~3271--3281,
+  Nov. 2012.
+
+\bibitem{Waskom_2021}
+M.~L. Waskom, ``seaborn: statistical data visualization,'' {\em Journal of Open
+  Source Software}, vol.~6, no.~60, p.~3021, 2021.
+
+\bibitem{Kewley_2001}
+L.~J. {Kewley}, M.~A. {Dopita}, R.~S. {Sutherland}, C.~A. {Heisler}, and
+  J.~{Trevena}, ``{Theoretical Modeling of Starburst Galaxies},'' {\em ApJ},
+  vol.~556, pp.~121--140, July 2001.
+
+\bibitem{Kauffmann_2003}
+G.~{Kauffmann}, T.~M. {Heckman}, C.~{Tremonti}, J.~{Brinchmann}, S.~{Charlot},
+  S.~D.~M. {White}, S.~E. {Ridgway}, J.~{Brinkmann}, M.~{Fukugita}, P.~B.
+  {Hall}, {\v{Z}}.~{Ivezi{\'c}}, G.~T. {Richards}, and D.~P. {Schneider},
+  ``{The host galaxies of active galactic nuclei},'' {\em MNRAS}, vol.~346,
+  pp.~1055--1077, Dec. 2003.
+
+\bibitem{TBT_2011}
+L.~{Trouille}, A.~J. {Barger}, and C.~{Tremonti}, ``{The OPTX Project. V.
+  Identifying Distant Active Galactic Nuclei},'' {\em ApJ}, vol.~742, p.~46,
+  Nov. 2011.
+
+\bibitem{Chilingarian_2010}
+I.~V. {Chilingarian}, A.-L. {Melchior}, and I.~Y. {Zolotukhin}, ``{Analytical
+  approximations of K-corrections in optical and near-infrared bands},'' {\em
+  MNRAS}, vol.~405, pp.~1409--1420, July 2010.
+
+\bibitem{kcorr_code}
+``k-correction code.'' \url{http://kcor.sai.msu.ru/getthecode/}, Date of
+  access: June 2023.
+
+\bibitem{topcat}
+``Sdss sky server.'' \url{https://www.star.bris.ac.uk/~mbt/topcat/}, Date of
+  access: May 2023.
+
+\bibitem{Jarrett_2017}
+T.~H. Jarrett, M.~E. Cluver, C.~Magoulas, M.~Bilicki, M.~Alpaslan,
+  J.~Bland-Hawthorn, S.~Brough, M.~J.~I. Brown, S.~Croom, S.~Driver, B.~W.
+  Holwerda, A.~M. Hopkins, J.~Loveday, P.~Norberg, J.~A. Peacock, C.~C.
+  Popescu, E.~M. Sadler, E.~N. Taylor, R.~J. Tuffs, and L.~Wang, ``Galaxy and
+  mass assembly (gama): Exploring the wise web in g12,'' {\em The Astrophysical
+  Journal}, vol.~836, p.~182, feb 2017.
+
+\bibitem{Mateos_2013}
+S.~{Mateos}, A.~{Alonso-Herrero}, F.~J. {Carrera}, A.~{Blain}, P.~{Severgnini},
+  A.~{Caccianiga}, and A.~{Ruiz}, ``{Uncovering obscured luminous AGN with
+  WISE},'' {\em MNRAS}, vol.~434, pp.~941--955, Sept. 2013.
+
+\bibitem{wise_data_pre}
+``Wise data pre-processing.''
+  \url{https://wise2.ipac.caltech.edu/docs/release/allsky/expsup/sec4_4h.html},
+  Date of access: June 2023.
+
+\end{thebibliography}

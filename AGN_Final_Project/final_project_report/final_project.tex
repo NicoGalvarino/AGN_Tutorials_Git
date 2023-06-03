@@ -34,8 +34,8 @@
 	\textbf{Nicolás Guerra-Varas} \\
 	Professor Dragana Ili\'c \\
 	Tutor Isidora Jankov \\
-    \today \\
-%    \multicolumn{2}{l}{\today} \\
+	\today \\
+	%    \multicolumn{2}{l}{\today} \\
 	% \multicolumn{2}{l}{\localizacionuniversidad}
 }
 
@@ -45,189 +45,690 @@
 % INICIO DE PÁGINAS
 \begin{document}
 	
-% CONFIGURACIÓN DE PÁGINA Y ENCABEZADOS
-\templatePagecfg
+	% CONFIGURACIÓN DE PÁGINA Y ENCABEZADOS
+	\templatePagecfg
+	
+	% ----------------------------------------------------------------------------
+	
+	\section*{Introduction}
+	
+	Any study of active galactic nuclei (AGN) has to start by finding a proper sample of these objects. However, this is not always an easy task, as factors like redshift and extinction can complicate the analysis. It is becoming increasingly important to have effective classification schemes in place to accommodate for all the big data surveys that are coming soon such as the LSST and SKA.
+	
+	Some existing classification schemes are the Baldwin, Phillips and Terlevich (BPT) diagram \cite{Baldwin_1981}, the WHAN diagram \cite{Cid_2011}, and the Trouille, Barger and Tremonti (TBT) diagrams, which all use spectral data publicly available from the Sloan Digital Sky Survey (SDSS). The Wide-field Infrared Survey Explorer (WISE) \cite{Wright_2010} also provides a classification scheme from its color-color diagram \cite{Mateos_2012, Mateos_2012}.
+	
+	The goal of this report is to test different classification schemes, specifically how and how many AGN they find. In the first two tasks, I used SDSS data to compare the BPT, TBT and WHAN diagrams. Then, in the third task, I used WISE data to the SDSS classification schemes with another survey.
+	
+	% ----------------------------------------------------------------------------
+	
+	\section*{Task 1: BPT and WHAN on a Complete Sample}
+	
+	In this first task, my goal is to evaluate and compare the classification scheme from the different BPT diagrams and the WHAN diagram, focusing on the number of AGN found.
+	
+	I started by definining the sample and downloading the data using the sql query in Code \ref{sdss_query}. In Table \ref{tab:all_gals_describe}, there is a statistical summary of the fluxes and equivalent widths of the sample. The result from the SQL query is in file \texttt{all\_galaxies.csv}, and the same table including flux ratios and labels is in file \texttt{all\_galaxies\_after.csv}.
+	
+	I checked the subclasses that SDSS asigned spectroscopically and found that there are 6820 starburst galaxies, 14626 starforming galaxies, 1881 AGN, 304 AGN broadline, 108 starforming broadline galaxies, 231 starburst broadline galaxies and 5485 unasigned. The larger class indicates there are 498 QSOs and 29502 inactive galaxies. Then, I saw that the objects in the QSO class are composed majoritarily by the starburst broadline, as well as other inactive galaxy classes. Similarly, the objects in the GALAXY (or inactive galaxy) class is also contaminated by AGN subclasses. This indicated that these labels are not fully reliable.
+	
+	In addition, the SDSS query selects narrow line objects only, but there are several objects in the broadline subclasses. This also makes me think these labels are not the most reliable.
+	
+	\section*{1. BPT Diagrams}
+	
+	Then, I plotted the BPT diagram of the full sample in Figure \ref{fig:BPT_niiHa_oiiiHb}. I used \texttt{seaborn} \cite{Waskom_2021} for this. The papers \cite{Kewley_2001} and \cite{Kauffmann_2003} propose a theoretical line to separate star-forming galaxies from AGN. The one from the former is stricter and poses a lower limit on the amount of AGN.
+	
+	\begin{equation} \label{kewley}
+		\log{ \left(  \text{[OIII]} / {\text{H}\beta} \right)  } = \frac{0.61}{\log{ \left(  \text{[NII]} / {\text{H}\alpha} \right)  } - 0.47} + 1.19
+	\end{equation}
+	
+	\begin{equation} \label{kauffman}
+		\log{ \left(  \text{[OIII]} / {\text{H}\beta} \right)  } = \frac{0.61}{\log{ \left( \text{[NII]} / {\text{H}\alpha} \right)  } - 0.05} + 1.30
+	\end{equation}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.65\textwidth]{../BPT_Diagrams/BPT_niiHa_oiiiHb.pdf}
+		\caption{BPT Diagram: [NII]/H$\alpha$ vs [OIII]/H$\beta$. The lines correspond to the thresholds defined by \cite{Kewley_2001} and \cite{Kauffmann_2003}.}
+		\label{fig:BPT_niiHa_oiiiHb}
+	\end{figure}
 
-% ----------------------------------------------------------------------------
+	The objects labeled as ``Composite'' in Figure \ref{fig:BPT_niiHa_oiiiHb} have a different classification by \cite{Kewley_2001} and \cite{Kauffmann_2003}.
+	
+	This classification resulted in 18988 star-forming galaxies (63\% of the sample), 5607 composites (19\%), and 5405 AGN (18\%) (see Table \ref{tab:bpt_labels}).
 
-\section*{Task 1: BPT and WHAN on a Complete Sample}
+	Then, I also plotted the BPT diagrams that use [SII]/H$\alpha$ and [OII]/H$\alpha$ instead of [NII]/H$\alpha$. The plot that uses the [SII] lines is duplet with wavelengths 6717 and 6731 angstrom, so I used the summed them to get the BPT diagram. Only the paper by \cite{Kewley_2001} defines thresholds in these diagrams:
+	
+	\begin{equation} \label{kewley_SII}
+		\log{ \left(  \text{[OIII]} / {\text{H}\beta} \right)  } = \frac{0.72}{\log{ \left(  \text{[SII]} / {\text{H}\alpha} \right)  } - 0.32} + 1.30
+	\end{equation}
+	
+	\begin{equation} \label{kewley_OI}
+		\log{ \left(  \text{[OIII]} / {\text{H}\beta} \right)  } = \frac{0.73}{\log{ \left(  \text{[OI]} / {\text{H}\alpha} \right)  } + 0.59} + 1.33
+	\end{equation}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.65\textwidth]{../BPT_Diagrams/BPT_sii67176731Ha_oiiiHb.pdf}
+		\caption{BPT Diagram: [SII]/H$\alpha$ vs [OIII]/H$\beta$. Objects above the threshold defined by \cite{Kewley_2001}}
+		\label{fig:BPT_siiHa_oiiiHb}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.65\textwidth]{../BPT_Diagrams/BPT_oiHa_oiiiHb.pdf}
+		\caption{BPT Diagram: [OII]/H$\alpha$ vs [OIII]/H$\beta$.}
+		\label{fig:BPT_oiHa_oiiiHb}
+	\end{figure}
 
+	I used the first diagram in Figure \ref{fig:BPT_niiHa_oiiiHb} to define the BPT labels of the objects, so the lines mark clear thresholds. In the BPT that uses [SII] (see Figure \ref{fig:BPT_siiHa_oiiiHb}), the threshold is clearly classifying the vast majority of the star-forming galaxies correctly, with only a few being outside of that region. Similarly, the vast majority of the AGN are above the threshold, and are classified correctly. So this diagram does a good job at preserving the same classification from the first BPT diagram. However, it seems to classify composite galaxies as star-forming galaxies by default. This is because this threshold is more restrictive than the one defined by \cite{Kauffmann_2003}. On the other hand, the BPT diagram that uses [OI] (see Figure \ref{fig:BPT_oiHa_oiiiHb}) provides a worse classification. The threshold in this diagram passes directly through the population of AGN objects. So, even though it classifies the vast majority of star-forming galaxies correctly, this classification would provide a significantly underestimated number of AGN.
+	
+	Thus, after the BPT with [NII], the digram that uses [SII] is the most reliable one.
 
+	\section*{2. WHAN Diagram}
+	
+	Then, I plotted the WHAN diagram: $H_\alpha$ equivalent width $W_{H_\alpha}$ vs [NII]/$H_\alpha$ \cite{Cid_2011}. Since the equivalent widths provided by SDSS are majoritarily negative, I got their absolute value, and used that to plot the WHAN diagram in a logarithmic scale. In their paper, \cite{Cid_2011} define a criterion to classify objects:
+	\begin{itemize}
+		\item Pure star-forming galaxies: $\log{[NII] / H_\alpha} < -0.4$ and $W_{H_\alpha} > 3 \r{A}$
+		
+		\item Strong AGN / Seyferts: $\log{[NII] / H_\alpha} > -0.4$ and $W_{H_\alpha} > 6  \r{A}$
+		
+		\item Weak AGN: $\log{[NII] / H_\alpha} > -0.4$ and $3 < W_{H_\alpha} < 6  \r{A}$
+		
+		\item Retired galaxies/Fake AGN (RGs): $W_{H_\alpha} < 3 \r{A}$
+		
+		\item Passive/Lineless galaxies: $W_{H_\alpha} < 0.5 \r{A}$ and $W_{[NII]} < 0.5 \r{A}$
+	\end{itemize}
 
-\section{BPT Diagrams}
+	Figures \ref{fig:WHAN_whan_labels} and \ref{fig:WHAN_BPT_labels} show the resulting WHAN diagrams with the WHAN and BPT labels respectively. In Figure \ref{fig:WHAN_BPT_labels}, the divisions at $\log{[NII] / H_\alpha} = -0.4$ and at $W_{H_\alpha} = 3 \r{A}$ seem to separate the star-forming galaxies from the rest fairly well.
+	
+		\begin{table}[H]
+		\begin{subtable}[h]{0.45\textwidth}
+			\centering
+			\begin{tabular}{ccc}
+				\hline \hline
+				& \# of Objects & \% \\ \hline
+				Star-Forming 		& 15995         & 53.3             \\
+				\textbf{Seyfert}    & \textbf{8031}          & \textbf{26.8}             \\
+				Weak AGN     		& 1777          & 5.9              \\
+				RG           		& 4181          & 13.9             \\
+				Passive     & 16            & 0.05             \\ \hline
+			\end{tabular}
+			\caption{Classification from the WHAN diagram.}
+			\label{tab:whan_labels}
+		\end{subtable}
+		\hfill
+		\begin{subtable}[h]{0.45\textwidth}
+			\centering
+			\begin{tabular}{ccc}
+				\hline \hline
+				& \# of Objects & \% \\ \hline
+				Star-Forming 		  & 18988         & 63.3             \\
+				Composite   		  & 5607          & 18.7             \\
+				\textbf{AGN}          & \textbf{5405}          & \textbf{18.0}             \\ \hline
+			\end{tabular}
+			\caption{Classification from the BPT diagram.}
+			\label{tab:bpt_labels}
+		\end{subtable}
+		\caption{Classifications from the BPT and WHAN diagrams.}
+		\label{tab:whan_vs_bpt_labels}
+	\end{table}
+	
+	The WHAN diagram classifies 8031 objects as Seyferts or strong AGN, whilst the BPT diagram only 5405 (see Table \ref{tab:whan_vs_bpt_labels}). I cross-checked the BPT labels of the WHAN Seyferts and the WHAN labels of the BPT AGN to see how they disagree. Pie charts presenting this are in Figure \ref{fig:pie_charts}.
+	\begin{itemize}
+		\item The WHAN Seyferts have different BPT labels (see Figure \ref{fig:WHAN_BPT_labels}). The majority of them are AGN or composites. However, about 36\% are BPT star-forming galaxies, which is not good.
+		
+		\item The BPT AGN are mostly RGs (fake AGN). This indicates that the BPT diagram cannot identify these as fake and defaults them to the AGN class. The rest are classified majoritarily as Seyferts and weak AGN, with only a small percentage as star-forming. So, the BPT diagram does well at identifying AGN but has the disadvantage that it cannot distinguish RGs from others.
+	\end{itemize}
 
-\begin{figure}[H]
+	Overall, the WHAN diagram is capable of providing a more detailed classification. However, it classifies a large portion of sources as RGs or fake AGN. With more time, I would like to see if the proportion of RGs is overestimated in this diagram since the threshold to define them doesn't seem restrictive enough.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.65\textwidth]{../WHAN_diagrams/WHAN_diagram_whan_label.pdf}
+		\caption{WHAN Diagram with its own labels: [NII]/H$\alpha$ vs $W_{H_{\alpha}}$ [Ang].}
+		\label{fig:WHAN_whan_labels}
+	\end{figure}
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.65\textwidth]{../WHAN_diagrams/WHAN_diagram.pdf}
+		\caption{WHAN Diagram with BPT labels: [NII]/H$\alpha$ vs $W_{H_{\alpha}}$ [Ang].}
+		\label{fig:WHAN_BPT_labels}
+	\end{figure}
+
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}[b]{0.4\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../WHAN_diagrams/seyferts_bpt_label_pie.pdf}
+			\caption{BPT labels of the objects classified as Seyferts by the WHAN diagram: 2924 star-forming galaxies, 3237 composites and 1870 AGN.}
+			\label{fig:seyferts_bpt_label_pie}
+		\end{subfigure}
+		%\hfill
+		\begin{subfigure}[b]{0.4\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../WHAN_diagrams/agn_whan_label_pie.pdf}
+			\caption{WHAN labels of the objects classified as AGN by the BPT diagram: 1870 Seyferts, 2878 RGs, 615 weak AGN and 42 star-forming.}
+			\label{fig:agn_whan_label_pie}
+		\end{subfigure}
+		\caption{Pie charts illustrating the labels of the objects marked as AGN and Seyferts by the BPT and WHAN diagrams.}
+		\label{fig:pie_charts}
+	\end{figure}
+	
+	
+	% ----------------------------------------------------------------------------
+	
+	\section*{Task 2: BPT and TBT on a Subsample}
+	
+	In this first task, my goal is to evaluate and compare the classification scheme from the different BPT diagrams and the WHAN diagram, focusing on the number of AGN found.
+	
+	The next goal is to test the TBT diagram, compare it to the BPT diagram and see how the number of labeled AGN changes from one to another.
+
+	\section*{1. Defining the Sample}
+	
+	Within my python code, I defined a subsample using the same criteria as \cite{TBT_2011}. I kept sources that have  H$\alpha$, H$\beta$, [OIII], [NII], [OII] and [NeIII] fluxes with signal-to-noise (S/N) $> 5$. This results in 3688 objects (called TBT subsample, see file \texttt{TBT\_subsample.csv}).
+
+	\section*{2. k-Correction}
+	
+	I corrected the color magnitudes $(g-z)$ for redshift using the k-correction \cite{Chilingarian_2010}. For this, I used the code available in \cite{kcorr_code}. I computed the correction with both the $g$ and $z$ filters to get their redshift-corrected values. Then I used this relation to obtain the k-corrected color:
+	\begin{equation} \label{kcorrection}
+		^0(g-z) = (g-z) - (^0g - ^0z)
+	\end{equation}
+	
+	\section*{3. BPT and TBT Diagrams}
+	
+	Then, I plotted the BPT diagram as in the previous section in Figure \ref{fig:BPT_subsample_niiHa_oiiiHb}. The TBT diagram was proposed by \cite{TBT_2011} and it uses the [NeIII] and [OII] absorption lines and the redshift-corrected color $(g-z)$. I plotted this diagram in Figure \ref{fig:TBT_subsample}. The objects that lie above the threshold:
+	\begin{equation} \label{TBT_threshold}
+		^0(g-z) = -1.2 \times \log{\left(  [\text{NeIII}] / [\text{OII}] \right) } - 0.4
+	\end{equation}
+
+	\noindent are classified as AGN, and the rest as star-forming galaxies. In Figure \ref{fig:TBT_subsample}, the three BPT classes lie in fairly distinct places. The AGN class lies almost completely above the threshold, the composite class passes through it, and the star-forming galaxy class is mostly bellow it, although it does bleed into the other region of the plot. Table \ref{tab:bpt_vs_tbt_labels} shows the result of the BPT and TBT classifications. Like in the previous section, I cross-checked the BPT and TBT labels to see how they get confused (see Figure \ref{fig:tbt_pie_charts}).
+	
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{c|cc|cc}
+			\hline \hline
+			& \multicolumn{2}{c|}{BPT Diagram} & \multicolumn{2}{c}{TBT Diagram}  \\ \hline
+			& \# of Objects & \% of the Sample & \# of Objects & \% of the Sample \\ \hline
+			Star-Forming & 2263         & 61.36            & 2252         & 61.06            \\
+			Composite    & 321          & 8.70            & -             & -                \\
+			\textbf{AGN}          & \textbf{1104}           & \textbf{29.93}             & \textbf{1436}            & \textbf{38.94}             \\ \hline
+		\end{tabular}
+		\caption{Classifications from the BPT and TBT diagrams.}
+		\label{tab:bpt_vs_tbt_labels}
+	\end{table}
+
+	\begin{itemize}
+		\item The BPT diagram (see Figure \ref{fig:T2_bpt_label_pie}) classifies 57.3\% of the TBT AGN as either AGN or composites, so it mostly agrees with the TBT classification scheme. However, it is more uncertain because it is not capabable of necessarily distinguishing AGN from composites, and the TBT AGN subsample is heavily contaminated by star-forming galaxies (more than 40\%).
+
+		\item The TBT diagram (see Figure \ref{fig:T2_tbt_label_pie}) classifies 1436 objects as AGN, more than 99\% of which are also classified as AGN by the BPT diagram. The BPT AGN subsample is virtually not contaminated by star-forming galaxies. This indicates that most likely, if an object is an AGN according to the BPT diagram, it will also be an AGN according to the TBT diagram. So, these objects will certainly be AGN.
+
+	\end{itemize}
+
+	On the other hand, both classification schemes resultes in a very similar number of star-forming galaxies, so they will mostly agree when classifying this class of objects. Overall, the TBT diagram is very good at distinguishing between AGN and star-forming, but it has more uncertainty in the classification of the latter.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.65\textwidth]{../BPT_Diagrams/BPT_sub_niiHa_oiiiHb.pdf}
+		\caption{BPT Diagram: [NII]/H$\alpha$ vs [OIII]/H$\beta$ for the defined subsample of Task 2.}
+		\label{fig:BPT_subsample_niiHa_oiiiHb}
+	\end{figure}
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.65\textwidth]{../TBT_diagrams/TBT_full_subsample.pdf}
+		\caption{TBT Diagram: [NeIII]/[OII] vs $^0$(g-z) for the defined subsample.}
+		\label{fig:TBT_subsample}
+	\end{figure}
+
+	\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{../BPT_Diagrams/BPT_niiHa_oiiiHb.pdf}
-	\caption{BPT Diagram: [NII]/H$\alpha$ vs [OIII]/H$\beta$.}
-	\label{fig:BPT_niiHa_oiiiHb}
+	\begin{subfigure}[b]{0.4\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{../TBT_diagrams/tbt_label_pie.pdf}
+		\caption{TBT labels of the objects classified as AGN by the BPT diagram: 2 star-forming galaxies and 1102 AGN.}
+		\label{fig:T2_bpt_label_pie}
+	\end{subfigure}
+	%\hfill
+	\begin{subfigure}[b]{0.4\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{../TBT_diagrams/bpt_label_pie.pdf}
+		\caption{BPT labels of the objects classified as AGN by the TBT diagram: 87 star-forming galaxies, 247 composites and 1102 AGN.}
+		\label{fig:T2_tbt_label_pie}
+	\end{subfigure}
+	\caption{Pie charts illustrating the labels of the objects marked as AGN by the BPT and TBT diagrams.}
+	\label{fig:tbt_pie_charts}
 \end{figure}
+	
+	% ----------------------------------------------------------------------------
+	
+	\section*{Task 3: WISE Color-Color Diagram on a Subsample}
+	
+	The goal of this last task is to classify a subsample with the WISE color-color diagram and compare it to the labels from SDSS data.
+	
+	\section*{1. Defining the Subsample}
+	
+	I started by downloading the WISE colors and fluxes: W1, W2 and W3 which are at 3.4, 4.6 and 12 $\mu$m respectively. I used the SQL query in Code \ref{wise_query} for this. It has the same conditions as Code \ref{sdss_query}, but I did not select the top columns, I queried for the full table these conditions define. The result is in the \texttt{wise\_full\_query.csv} file and it consists of 194527 objects. Then, I used TOPCAT \cite{topcat} to merge both tables based on their coordinates within a radius of 3''. This is about half of the angular resolution at 3.4 $\mu$m (6.1'') \cite{Wright_2010}, so this ensures the WISE counterparts will correspond to the correct object in the initial sample without confusion. The final subsample has 25499 objects (see the \texttt{wise\_subsample.csv} file; the \texttt{wise\_subsample\_after.csv} file also includes the labels from the diagrams). In Table \ref{tab:wise_subsample_describe}, a statistical summary of the colors magnitudes and fluxes is presented.
+	
+	Out of 30000, 4501 objects were discarded to create the subsample, which is about 15\% of the original sample.
+	
+	\section*{2. Color-Color Diagram}
+	
+	First, I started by defining labels from the color-color diagram as Figure 11 of \cite{Jarrett_2017} (see Figure \ref{fig:wise_fluxes_Xray_wedge}).  These criteria result in 13212 star-forming disks, 12119 intermediate disks, 2297 spheroids and 584 AGN \& (u)LIRGs.
+	
+	In the same plot, I included the criterion that \cite{Mateos_2012} defines to select luminous AGN with X-ray detection using mid-IR WISE colors:
+	\begin{itemize}
+		\item $y = 0.315 x$ $ (+ 0.297, - 0.110)$
+		
+		\item $y = - 3.172 x + 0.436$
+	\end{itemize}
+	
+	\noindent where $y = \log{\left( \frac{f_{4.6}}{f_{3.4}} \right)  }$ and $x = \log{\left( \frac{f_{12}}{f_{4.6}} \right)  }$. These boundaries define a wedge in both the flux ratios and color-color diagrams since:
+	$$
+	W_i - W_j = 2.5 \times \log{\left( \frac{f_j}{f_i} \right)  }
+	$$
+	
+	Before plotting, I converted the flux units from digital numbers [DN] to Janskys [Jy], which is the unit used by \cite{Mateos_2012, Mateos_2013}. I used this formula from \cite{wise_data_pre}:
+	\begin{align}
+		F_\nu [\text{Jy}] = F_\nu [\text{DN}] \times 10^{- m_{Vega} / 2.5} , 
+	\end{align}
 
-\begin{figure}[H]
+	\noindent where $m_{Vega}$ is the corresponding color magnitude.
+	
+	\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{../BPT_Diagrams/BPT_sii67176731Ha_oiiiHb.pdf}
-	\caption{BPT Diagram: [SII]/H$\alpha$ vs [OIII]/H$\beta$.}
-	\label{fig:BPT_siiHa_oiiiHb}
-\end{figure}
+		\includegraphics[width=0.65\textwidth]{../WISE_plots/wise_final_label.pdf}
+		\caption{WISE color-color diagram as in \cite{Mateos_2012, Mateos_2013}.}
+		\label{fig:wise_fluxes_Xray_wedge}
+	\end{figure}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.8\textwidth]{../BPT_Diagrams/BPT_oiHa_oiiiHb.pdf}
-	\caption{BPT Diagram: [OII]/H$\alpha$ vs [OIII]/H$\beta$.}
-	\label{fig:BPT_oiHa_oiiiHb}
-\end{figure}
+	This classification scheme then resulted in 65 X-ray AGN (see Figure \ref{fig:wise_fluxes_Xray_wedge}), 64 of which are classified as AGN \& (u)LIRGs by \cite{Jarrett_2017}, and the remaining one as a spheroid.
+	
+	I also plotted the data on top of Figure 12 from Wright et al. 2010 \cite{Wright_2010}, which illustrates the locations of different classes in the WISE color-color diagram (see Figure \ref{fig:wise_top_Wright}). In this plot, the data mostly falls in the Starburst/LINER/LIRG region, as well as the Seyfert, spirals and elliptical/star regions. The Figure 12 from \cite{Wright_2010} has the disadvantage that many regions of different classes overlap, which makes it difficult to decide which is the correct label for the objects. Perhaps these blobs could be projected in three dimensions, where they might be more separated. Either way, if WISE is capable of providing a reliable classification with this diagram, it has a great advantage because these labels are detailed.
 
-\section{WHAN Diagram}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.65\textwidth]{../WISE_plots/color_color_top_Wright.pdf}
+		\caption{Density contours on top of Figure 12 from Wright et al. 2010 \cite{Wright_2010}. \protect\footnote{This plot was too busy with a scatterplot, so I prefer to present this and Figure \ref{fig:wise_fluxes_Xray_wedge} separately.}}
+		\label{fig:wise_top_Wright}
+	\end{figure}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.8\textwidth]{../WHAN_diagram.pdf}
-	\caption{Whan Diagram: [NII]/H$\alpha$ vs $W_{H_{\alpha}}$ [Ang].}
-	\label{fig:WHAN}
-\end{figure}
+	\begin{table}[H]
+		\begin{subtable}[h]{0.45\textwidth}
+			\centering
+			\begin{tabular}{ccc}
+				\hline \hline
+				& \# & \%      \\ \hline
+				Star-Forming    & 11942         & 46.83 \\
+				Intermediate    & 11041         & 43.30 \\
+				Spheroids       & 2008          & 7.87  \\
+				\textbf{AGN \& (u)LIRGs} & \textbf{443}           & \textbf{1.74}  \\
+				\textbf{X-Ray AGN}       & \textbf{65}            & \textbf{0.25}  \\ \hline
+			\end{tabular}
+			\caption{Classifications from WISE imd-IR color selections by \cite{Jarrett_2017} and \cite{Mateos_2012, Mateos_2013}.}
+			\label{tab:wise_labels}
+		\end{subtable}
+		\hfill
+		\begin{subtable}[h]{0.45\textwidth}
+			\centering
+			\begin{tabular}{ccc}
+				\hline \hline
+				& \# & \% \\ \hline
+				Star-Forming 		  & 16060         & 62.98            \\
+				Composite   		  & 4970          & 19.49             \\
+				\textbf{AGN}          & \textbf{4469}          & \textbf{17.53}             \\ \hline
+			\end{tabular}
+			\caption{Classifications from the BPT diagram.}
+			\label{tab:bpt_labels_wise_subsample}
+		\end{subtable}
+		\hfill
+		\begin{subtable}[h]{0.45\textwidth}
+			\centering
+			\begin{tabular}{ccc}
+				\hline \hline
+				& \# & \% \\ \hline
+				Galaxy 		  & 25061         & 98.28        \\
+				\textbf{QSO}          & \textbf{438}          & \textbf{1.72}             \\ \hline
+			\end{tabular}
+			\caption{SDSS classes.}
+			\label{tab:sdss_classes_wise_subsample}
+		\end{subtable}
+		\caption{SDSS labels, and classifications from the BPT diagram and WISE.}
+		\label{tab:WISE_vs_BPT_vs_SDSS_labels}
+	\end{table}
 
-% ----------------------------------------------------------------------------
+	The results from the WISE color-color classification scheme is presented in Table \ref{tab:wise_labels}, as well as the SDSS classes (Table \ref{tab:sdss_classes_wise_subsample}) and the BPT labels (Table \ref{tab:bpt_labels_wise_subsample}).
+	
+	The classes provided directly by SDSS only have 438 QSOs. By comparing with all the other classification schemes, I believe this number is heavily underestimated. Thus, the SDSS classes migh not be very reliable.
+	
+	Just as in the other sections, I cross-checked the labels of the AGN objects between the WISE and BPT classification schemes with pie charts (see Figure \ref{fig:wise_pie_charts}).
 
-\section*{Task 2: BPT and TBT on a Subsample}
+	The quantity of AGN identified by WISE is much less than that of the BPT diagram when considering the AGN \& (u)LIRGs and X-ray AGN classes. However, there is a large quantity of intermediate disks (11041). The region in Figure \ref{fig:wise_fluxes_Xray_wedge} below the wedge that corresponds to intermediate disks is quite close to the AGN \& (u)LIRGs and X-ray AGN regions, so most likely, a portion of these are also AGN but perhaps with not such clear signatures. This may indicate the objects that are labeled as AGN by WISE are certainly part of this class, and probably have very clear AGN signatures. However, even though Figure \ref{T3_bpt_label_pie} shoes that the majority of WISE AGN objects are classified as AGN or composites by the BPT diagram, there are many star-forming galaxies in this population. Thus, it is not possible to say these classification schemes agree.
+	
+	On the other hand, BPT AGN objects have a wider variety of WISE labels. The majority of these are labeled as intermediate disks, and only about 6\% as true AGN. This supports my idea that a portion of these intermediate disks are actually AGN. The rest ($\sim 40$ \%) are classified as spheroids or star-forming disks. Once again, this indicates that WISE and BPT classifications are not consistent with one another. Furthermore, more information and a more detailed study would be necessary to see which of the two is more reliable, and it will depend on the given samples and data.
 
-\section{BPT Diagram}
+	There are only 289 objects that are classified as AGN by both WISE and BPT. Given that these classification schemes do not agree as I discussed above, these 289 objects will certainly be AGN.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.8\textwidth]{../BPT_Diagrams/BPT_sub_niiHa_oiiiHb.pdf}
-	\caption{BPT Diagram: [NII]/H$\alpha$ vs [OIII]/H$\beta$ for the defined subsample.}
-	\label{fig:BPT_subsample_niiHa_oiiiHb}
-\end{figure}
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}[b]{0.4\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../WISE_plots/bpt_label_pie_wise_subsample.pdf}
+			\caption{BPT labels of the objects classified as either X-ray AGN or AGN \& (u)LIRGs by WISE: 274 AGN, 146 star-forming galaxies and 88 composites.}
+			\label{fig:T3_bpt_label_pie}
+		\end{subfigure}
+		%\hfill
+		\begin{subfigure}[b]{0.4\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../WISE_plots/wise_label_pie_wise_subsample.pdf}
+			\caption{WISE labels of the objects classified as AGN by the BPT diagram: 294 star-forming disks, 2352 intermediate disks, 1549 spheroids, 224 AGN \& (u)LIRGs and 50 X-ray AGN}
+			\label{fig:T3_wise_label_pie}
+		\end{subfigure}
+		\caption{Pie charts illustrating the labels of the objects marked as AGN by the BPT and TBT diagrams.}
+		\label{fig:wise_pie_charts}
+	\end{figure}
 
-\section{TBT Diagram}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.8\textwidth]{../TBT_sub_diagrams.pdf}
-	\caption{TBT Diagram: [NeIII]/[OII] vs $^0$(g-z) for the defined subsample.}
-	\label{fig:TBT_subsample}
-\end{figure}
-
-% ----------------------------------------------------------------------------
-
-\section*{Task 3: WISE color-color diagram on an AGN Subsample}
-
-
-
-
-% ----------------------------------------------------------------------------
-
-\pagebreak
-
-\appendix
-
-\section*{Appendix A: Computer Codes}
-
+	% ----------------------------------------------------------------------------
+	
+	\bibliographystyle{aa}
+	\bibliography{references}
+	
+	\pagebreak
+	
+	\appendix
+	
+	\section*{Appendix: Computer Codes and Tables}
+	
+	\subsection{SQL Queries}
+	
 	% 205379 objects without the TOP30000 requirement
-\begin{sourcecode}[\label{sdss_query}]{sql}{SQL Query: Defines Sample of 30,000 Objects}
-SELECT TOP 30000 s.specobjid, s.plate, s.mjd, s.fiberID, 
-s.ra, s.dec, s.subclass, s.z, 
-g.oiii_5007_flux, g.oiii_5007_flux_err, 
-g.h_alpha_flux, g.h_alpha_flux_err, 
-g.h_beta_flux, g.h_beta_flux_err, 
-g.nii_6584_flux, g.nii_6584_flux_err, 
-g.sii_6717_flux, g.sii_6717_flux_err, 
-g.sii_6731_flux, g.sii_6731_flux_err, 
-g.oi_6300_flux, g.oi_6300_flux_err, 
-g.h_alpha_reqw, g.h_alpha_reqw_err, 
-g.neiii_3869_flux, g.neiii_3869_flux_err, 
-g.oii_3726_flux, g.oii_3726_flux_err, 
-g.oii_3729_flux, g.oii_3729_flux_err, 
-p.psfMag_g, p.psfMagErr_g, 
-p.psfMag_z, p.psfMagErr_z
+	\begin{sourcecode}[\label{sdss_query}]{sql}{SQL Query: Defines Sample of 30,000 Objects}
+		SELECT TOP 30000 s.specobjid, s.plate, s.mjd, s.fiberID, 
+		s.ra, s.dec, s.class, s.subclass, s.z, 
+		g.oiii_5007_flux, g.oiii_5007_flux_err, 
+		g.h_alpha_flux, g.h_alpha_flux_err, 
+		g.h_beta_flux, g.h_beta_flux_err, 
+		g.nii_6584_flux, g.nii_6584_flux_err, 
+		g.nii_6584_reqw, g.nii_6584_reqw_err, 
+		g.sii_6717_flux, g.sii_6717_flux_err, 
+		g.sii_6731_flux, g.sii_6731_flux_err, 
+		g.oi_6300_flux, g.oi_6300_flux_err, 
+		g.h_alpha_reqw, g.h_alpha_reqw_err, 
+		g.neiii_3869_flux, g.neiii_3869_flux_err, 
+		g.oii_3726_flux, g.oii_3726_flux_err, 
+		g.oii_3729_flux, g.oii_3729_flux_err, 
+		p.psfMag_g, p.psfMagErr_g, 
+		p.psfMag_z, p.psfMagErr_z
+		
+		FROM GalSpecLine AS g 
+		JOIN SpecObjAll AS s ON g.specobjid = s.specobjid
+		JOIN PhotoObjAll AS p ON s.bestobjid = p.objID
+		
+		WHERE
+		(s.class = 'QSO' or s.class = 'GALAXY')
+		AND s.z <= 0.3
+		AND 2.355 * g.sigma_balmer <= 700
+		AND 2.355 * g.sigma_forbidden <= 700
+		AND g.oiii_5007_flux <> 0
+		AND (g.oiii_5007_flux / g.oiii_5007_flux_err) > 1
+		AND g.h_alpha_flux <> 0
+		AND (g.h_alpha_flux / g.h_alpha_flux_err) > 1
+		AND g.h_beta_flux <> 0
+		AND (g.h_beta_flux / g.h_beta_flux_err) > 1
+		AND g.nii_6584_flux <> 0
+		AND (g.nii_6584_flux / g.nii_6584_flux_err) > 1
+		AND g.sii_6717_flux <> 0
+		AND (g.sii_6717_flux / g.sii_6717_flux_err) > 1
+		AND g.sii_6731_flux <> 0
+		AND (g.sii_6731_flux / g.sii_6731_flux_err) > 1
+		AND g.oi_6300_flux <> 0
+		AND (g.oi_6300_flux / g.oi_6300_flux_err) > 1
+		AND g.neiii_3869_flux <> 0
+		AND (g.neiii_3869_flux / g.neiii_3869_flux_err) > 1
+		AND g.oii_3726_flux <> 0
+		AND (g.oii_3726_flux / g.oii_3726_flux_err) > 1
+		AND g.oii_3729_flux <> 0
+		AND (g.oii_3729_flux / g.oii_3729_flux_err) > 1
+		AND (p.psfMag_g / p.psfMagErr_g) > 1
+		AND (p.psfMag_z / p.psfMagErr_z) > 1
+	\end{sourcecode}
+	
+	\begin{sourcecode}[\label{wise_query}]{sql}{SQL Query: Cross-ID to find WISE Colors}
+		SELECT --count(*)
+		s.specobjid, s.plate, s.mjd, s.fiberID, 
+		s.ra, s.dec, s.class, s.subclass, s.z, 
+		W.w1mpro as w1, W.w2mpro as w2, W.w3mpro as w3, 
+		W.w1sigmpro as w1, W.w2sigmpro as w2, W.w3sigmpro as w3, 
+		W.w1flux, W.w2flux, W.w3flux, 
+		W.w1sigflux, W.w2sigflux, W.w3sigflux
+		
+		FROM GalSpecLine AS g 
+		JOIN SpecObjAll AS s ON g.specobjid = s.specobjid
+		JOIN PhotoObjAll AS p ON s.bestobjid = p.objID
+		JOIN wise_xmatch AS x ON s.bestobjid = x.sdss_objid JOIN wise_allsky AS w ON w.cntr = x.wise_cntr
+		
+		WHERE
+		(s.class = 'QSO' or s.class = 'GALAXY')
+		AND (W.w1flux / W.w1sigflux) > 1
+		AND (W.w2flux / W.w2sigflux) > 1
+		AND (W.w3flux / W.w3sigflux) > 1
+		AND (W.w1mpro / W.w1sigmpro) > 1
+		AND (W.w2mpro / W.w2sigmpro) > 1
+		AND (W.w3mpro / W.w3sigmpro) > 1
+		AND s.z <= 0.3
+		AND 2.355 * g.sigma_balmer <= 700
+		AND 2.355 * g.sigma_forbidden <= 700
+		AND g.oiii_5007_flux <> 0
+		AND (g.oiii_5007_flux / g.oiii_5007_flux_err) > 1
+		AND g.h_alpha_flux <> 0
+		AND (g.h_alpha_flux / g.h_alpha_flux_err) > 1
+		AND g.h_beta_flux <> 0
+		AND (g.h_beta_flux / g.h_beta_flux_err) > 1
+		AND g.nii_6584_flux <> 0
+		AND (g.nii_6584_flux / g.nii_6584_flux_err) > 1
+		AND g.sii_6717_flux <> 0
+		AND (g.sii_6717_flux / g.sii_6717_flux_err) > 1
+		AND g.sii_6731_flux <> 0
+		AND (g.sii_6731_flux / g.sii_6731_flux_err) > 1
+		AND g.oi_6300_flux <> 0
+		AND (g.oi_6300_flux / g.oi_6300_flux_err) > 1
+		AND g.neiii_3869_flux <> 0
+		AND (g.neiii_3869_flux / g.neiii_3869_flux_err) > 1
+		AND g.oii_3726_flux <> 0
+		AND (g.oii_3726_flux / g.oii_3726_flux_err) > 1
+		AND g.oii_3729_flux <> 0
+		AND (g.oii_3729_flux / g.oii_3729_flux_err) > 1
+		AND (p.psfMag_g / p.psfMagErr_g) > 1
+		AND (p.psfMag_z / p.psfMagErr_z) > 1
+	\end{sourcecode}
 
-FROM GalSpecLine AS g 
-JOIN SpecObjAll AS s ON g.specobjid = s.specobjid
-JOIN PhotoObjAll AS p ON s.bestobjid = p.objID
+	\subsection*{2. Plots}
+	
+	\begin{sourcecode}[\label{bpt_function}]{python}{Function to plot the BPT diagram ( [NII]/H$\alpha$ vs [OIII]/H$\beta$). The other BPT diagrams are done similarly.}
+	def plot_BPT(data, x, y, hue, xlabel, ylabel, 
+	Kauffman=True, Kewley=True, 
+	ylim=(-2.0, 2.0), 
+	density=False, 
+	save=False, save_name=None):
+	
+	plt.figure(figsize=(12, 8))
+	
+	plt.ylim(ylim)
+	
+	sns.scatterplot(data=data, x=x, y=y, palette='colorblind', 
+	hue=hue, style='BPT final', size=hue, sizes=(30, 15))
+	if density:
+	sns.kdeplot(data=data, x=x, y=y, levels=7, alpha=0.5, cut=2, color='k')
+	
+	# ------------------------------------------------------------------------------------------------
+	# Kauffman
+	if Kauffman:
+	x_to_plot = np.linspace(galaxies[x].min(), 0)
+	plt.plot(x_to_plot, 0.61 / (x_to_plot - 0.05) + 1.3, label='Kauffman et al. 2003', 
+	linewidth=1.5, alpha=0.8, c='k', linestyle='dashdot')
+	
+	# ------------------------------------------------------------------------------------------------
+	# Kewley
+	if Kewley:
+	x_to_plot_1 = np.linspace(galaxies[x].min(), 0.4)
+	plt.plot(x_to_plot_1, 0.61 / (x_to_plot_1 - 0.47) + 1.19, label='Kewley et al. 2001', 
+	linewidth=1.5, alpha=0.8, c='k', linestyle='dashed')
+	
+	# ------------------------------------------------------------------------------------------------
+	
+	plt.xlabel(xlabel, fontsize=13)
+	plt.ylabel(ylabel, fontsize=13)
+	
+	plt.legend(loc='lower left', fontsize=12)
+	
+	if save:
+	plt.savefig('./BPT_Diagrams/' + save_name + '.pdf')
+	
+	plt.show()
+	\end{sourcecode}
 
-WHERE
-(s.class = 'QSO' or s.class = 'GALAXY')
-AND s.z <= 0.3
-AND 2.355 * g.sigma_balmer <= 700
-AND 2.355 * g.sigma_forbidden <= 700
-AND g.oiii_5007_flux <> 0
-AND (g.oiii_5007_flux / g.oiii_5007_flux_err) > 1
-AND g.h_alpha_flux <> 0
-AND (g.h_alpha_flux / g.h_alpha_flux_err) > 1
-AND g.h_beta_flux <> 0
-AND (g.h_beta_flux / g.h_beta_flux_err) > 1
-AND g.nii_6584_flux <> 0
-AND (g.nii_6584_flux / g.nii_6584_flux_err) > 1
-AND g.sii_6717_flux <> 0
-AND (g.sii_6717_flux / g.sii_6717_flux_err) > 1
-AND g.sii_6731_flux <> 0
-AND (g.sii_6731_flux / g.sii_6731_flux_err) > 1
-AND g.oi_6300_flux <> 0
-AND (g.oi_6300_flux / g.oi_6300_flux_err) > 1
-AND g.neiii_3869_flux <> 0
-AND (g.neiii_3869_flux / g.neiii_3869_flux_err) > 1
-AND g.oii_3726_flux <> 0
-AND (g.oii_3726_flux / g.oii_3726_flux_err) > 1
-AND g.oii_3729_flux <> 0
-AND (g.oii_3729_flux / g.oii_3729_flux_err) > 1
-AND (p.psfMag_g / p.psfMagErr_g) > 1
-AND (p.psfMag_z / p.psfMagErr_z) > 1
-\end{sourcecode}
+		
+	\begin{sourcecode}[\label{whan_plot}]{python}{Code to Plot the WHAN diagram in Figure \ref{fig:WHAN_whan_labels}. Figure \ref{fig:WHAN_BPT_labels} is done similarly.}
+	plt.figure(figsize=(12, 8))
+	
+	sns.scatterplot(data=galaxies, x='nii_h_alpha', y='h_alpha_reqw_abs', palette='colorblind', 
+	hue='WHAN label', style='WHAN label', size='WHAN label', sizes=(30, 15))
+	
+	sns.kdeplot(data=galaxies, x='nii_h_alpha', y='h_alpha_reqw_abs', levels=7, 
+	alpha=0.5, cut=2, color='k', log_scale=True)
+	
+	plt.ylim(10**(-4.2), 10**(3.8))
+	plt.xlim(10**(-2.5), 10)
+	
+	plt.vlines(10**(-0.4), 10**(-4.2), 10**(3.8), linewidth=1.0, alpha=0.8, colors='k', linestyle='solid', 
+	label=r'log [NII] / H$\alpha = -0.4$')
+	plt.hlines(6, 10**(-0.4), 10, linewidth=1.0, alpha=0.8, colors='k', linestyle='dashdot', 
+	label=r'$W_{H_{\alpha}} = 6$ [Ang], Kewley+2006')
+	plt.hlines(3, 10**(-2.5), 10, linewidth=1.0, alpha=0.8, colors='k', linestyle='dashed', 
+	label=r'$W_{H_{\alpha}} = 3$ [Ang]')
+	plt.hlines(0.5, 10**(-2.5), 10, linewidth=1.0, alpha=0.8, colors='k', linestyle='dotted', 
+	label=r'$W_{H_{\alpha}} = 0.5$ [Ang]')
+	
+	plt.xlabel(r'log [NII] / H$\alpha$', fontsize=13)
+	plt.ylabel(r'log $W_{H_{\alpha}}$ [Ang]', fontsize=13)
+	
+	plt.xscale('log')
+	plt.yscale('log')
+	
+	plt.legend(loc='lower left', fontsize=10)
+	
+	plt.savefig('./WHAN_diagrams/WHAN_diagram_whan_label.pdf')
+	
+	plt.show()
+	\end{sourcecode}
 
-\begin{sourcecode}[\label{wise_crossid_query}]{sql}{SQL Query: Cross-ID to find WISE Colors}
-SELECT --count(*)
-s.specobjid, s.plate, s.mjd, s.fiberID, 
-s.ra, s.dec, s.subclass, s.z, 
-W.w1mpro as w1, W.w2mpro as w2, W.w3mpro as w3, 
-W.w1sigmpro as w1, W.w2sigmpro as w2, W.w3sigmpro as w3, 
-W.w1flux, W.w2flux, W.w3flux, 
-W.w1sigflux, W.w2sigflux, W.w3sigflux
 
-FROM GalSpecLine AS g 
-JOIN SpecObjAll AS s ON g.specobjid = s.specobjid
-JOIN PhotoObjAll AS p ON s.bestobjid = p.objID
-JOIN wise_xmatch AS x ON s.bestobjid = x.sdss_objid JOIN wise_allsky AS w ON w.cntr = x.wise_cntr
+	\begin{sourcecode}[\label{tbt_plot}]{python}{Code to Plot the TBT diagram in Figure \ref{fig:TBT_subsample}}
+	plt.figure(figsize=(12, 8))
+	
+	sns.scatterplot(data=sub_gals, x='neiii_oii_log', y='g_z_color_kcorr', palette='colorblind', 
+	hue='BPT final', style='BPT final', size='BPT final', sizes=(30, 15))
+	
+	sns.kdeplot(data=sub_gals, x='neiii_oii_log', y='g_z_color_kcorr', levels=5, 
+	alpha=0.5, cut=2, color='k', log_scale=False)
+	
+	x_to_plot = np.linspace(10**(-2.7), 10**(0.5), 50)
+	plt.plot(np.log10(x_to_plot), - 1.2 * np.log10(x_to_plot) - 0.4, 
+	linewidth=1.2, alpha=0.8, c='k', linestyle='dashdot', label='TBT 2011')
+	
+	plt.ylim(-1.5, 2.5)
+	plt.xlim(-2.2, 0.3)
+	
+	plt.xlabel(r'log [NeIII] / [OII]', fontsize=11)
+	plt.ylabel(r'$^0$(g-z)', fontsize=11)
+	
+	plt.legend(loc='upper right', fontsize=10)
+	
+	# plt.savefig('./TBT_diagrams/TBT_full_subsample.pdf')
+	
+	plt.show()
+	\end{sourcecode}
 
-WHERE
-(s.class = 'QSO' or s.class = 'GALAXY')
-AND (W.w1flux / W.w1sigflux) > 1
-AND (W.w2flux / W.w2sigflux) > 1
-AND (W.w3flux / W.w3sigflux) > 1
-AND (W.w1mpro / W.w1sigmpro) > 1
-AND (W.w2mpro / W.w2sigmpro) > 1
-AND (W.w3mpro / W.w3sigmpro) > 1
-AND s.z <= 0.3
-AND 2.355 * g.sigma_balmer <= 700
-AND 2.355 * g.sigma_forbidden <= 700
-AND g.oiii_5007_flux <> 0
-AND (g.oiii_5007_flux / g.oiii_5007_flux_err) > 1
-AND g.h_alpha_flux <> 0
-AND (g.h_alpha_flux / g.h_alpha_flux_err) > 1
-AND g.h_beta_flux <> 0
-AND (g.h_beta_flux / g.h_beta_flux_err) > 1
-AND g.nii_6584_flux <> 0
-AND (g.nii_6584_flux / g.nii_6584_flux_err) > 1
-AND g.sii_6717_flux <> 0
-AND (g.sii_6717_flux / g.sii_6717_flux_err) > 1
-AND g.sii_6731_flux <> 0
-AND (g.sii_6731_flux / g.sii_6731_flux_err) > 1
-AND g.oi_6300_flux <> 0
-AND (g.oi_6300_flux / g.oi_6300_flux_err) > 1
-AND g.neiii_3869_flux <> 0
-AND (g.neiii_3869_flux / g.neiii_3869_flux_err) > 1
-AND g.oii_3726_flux <> 0
-AND (g.oii_3726_flux / g.oii_3726_flux_err) > 1
-AND g.oii_3729_flux <> 0
-AND (g.oii_3729_flux / g.oii_3729_flux_err) > 1
-AND (p.psfMag_g / p.psfMagErr_g) > 1
-AND (p.psfMag_z / p.psfMagErr_z) > 1
-\end{sourcecode}
 
-\section*{Appendix B: Tables}
+	\begin{sourcecode}[\label{wise_plot}]{python}{Code to Plot the WISE color-color diagram in Figure \ref{fig:wise_fluxes_Xray_wedge}}
+	fig, ax = plt.subplots(figsize=(10, 8))
+	
+	sns.scatterplot(data=wise_sub, x='flux3/flux2_Jy_log', y='flux2/flux1_Jy_log', palette='colorblind', 
+	hue='final_wise_label', style='final_wise_label', size='final_wise_label', sizes=(30, 15))
+	
+	sns.kdeplot(data=wise_sub, x='flux3/flux2_Jy_log', y='flux2/flux1_Jy_log', 
+	levels=5, alpha=0.7, cut=2, color='k', log_scale=False)
+	
+	x_to_plot = np.linspace((0.436 - 0.297) / (3.172 + 0.315), 4.3, 50)
+	plt.plot(x_to_plot, 0.315 * x_to_plot + 0.297, linewidth=1.2, alpha=0.8, c='k', linestyle='solid')
+	
+	x_to_plot_1 = np.linspace((0.436 + 0.110) / (3.172 + 0.315), 4.3, 50)
+	plt.plot(x_to_plot_1, 0.315 * x_to_plot_1 - 0.110, linewidth=1.2, alpha=0.8, c='k', linestyle='solid')
+	
+	x_to_plot_2 = np.linspace(0.436 / (3.172 + 0.315), 4.3, 50)
+	plt.plot(x_to_plot_2, 0.315 * x_to_plot_2, linewidth=1.2, alpha=0.8, c='k', linestyle='dotted')
+	
+	x_to_plot_3 = np.linspace((0.436 - 0.297) / (3.172 + 0.315), (0.436 + 0.110) / (3.172 + 0.315), 50)
+	plt.plot(x_to_plot_3, - 3.172 * x_to_plot_3 + 0.436, linewidth=1.2, alpha=0.8, c='k', linestyle='solid')
+	
+	plt.xlabel(r'log $ \left ( f_{12} / f_{4.6} \right ) $', fontsize=13)
+	plt.ylabel(r'log $ \left ( f_{4.6} / f_{3.4} \right ) $', fontsize=13)
+	
+	plt.legend(loc='upper left', fontsize=11)
+	
+	# plt.savefig('./WISE_plots/wise_final_label.pdf')
+	
+	plt.show()	
+	\end{sourcecode}
 
-% \input{tab_all_galaxies}
+	\begin{sourcecode}[\label{wise_Wright_plot}]{python}{Code to Plot the WISE color-color diagram on top of Figure 12 of Write et al. 2010 \cite{Wright_2010} in Figure \ref{fig:wise_top_Wright}}
+	fig = plt.figure(figsize=(522*2/120, 573*2/120), dpi=120)
+	
+	img = plt.imread('./WISE_plots/Fig12_Wright_2010.jpg')
+	
+	plt.imshow(img, zorder=1, extent=[-1.01, 7, -0.5, 4], aspect='equal', alpha=0.5)
+	
+	sns.kdeplot(data=wise_sub, x='w2-w3', y='w1-w2', levels=7, alpha=1.0, cut=2, color='mediumblue', zorder=5)
+	
+	# plt.savefig('./WISE_plots/color_color_top_Wright.pdf')
+	
+	plt.show()
+	\end{sourcecode}
 
-\bibliographystyle{aa}
-\bibliography{references}
+	\begin{sourcecode}[\label{pie_charts}]{python}{Code to Plot the Pie Charts in Figure \ref{fig:pie_charts}. Figures \ref{fig:tbt_pie_charts} and Figures \ref{fig:wise_pie_charts} are done similarly.}
+	plt.figure(figsize=(7, 7))
+	
+	galaxies.loc[galaxies['BPT final']=='AGN'].groupby('TBT label').size().plot(kind='pie', autopct='%.2f', labels=None, 
+	textprops={'fontsize': 14}, 
+	colors=['#0173b2', '#de8f05', '#029e73'], 
+	legend=True)
+	
+	plt.title('TBT Label', fontsize=14)
+	plt.ylabel(None)
+	
+	# plt.savefig('./TBT_diagrams/tbt_label_pie.pdf')
+	
+	plt.show()
+	
+	# -----
+	
+	plt.figure(figsize=(7, 7))
+	
+	galaxies.loc[galaxies['TBT label']=='AGN'].groupby('BPT final').size().plot(kind='pie', autopct='%.2f', labels=None, 
+	textprops={'fontsize': 14}, 
+	colors=['#0173b2', '#de8f05', '#029e73'], 
+	legend=True)
+	
+	plt.title('BPT Label', fontsize=14)
+	plt.ylabel(None)
+	
+	# plt.savefig('./TBT_diagrams/bpt_label_pie.pdf')
+	
+	plt.show()
+	\end{sourcecode}
+	
+	\input{all_galaxies_describe.tex}
+	
+	\input{TBT_subsample_describe.tex}
 
+	\input{wise_subsample_describe.tex}
+	
+	
 \end{document}

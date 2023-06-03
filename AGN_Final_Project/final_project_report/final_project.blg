@@ -1,5 +1,55 @@
-[0] Config.pm:304> INFO - This is Biber 2.14
-[0] Config.pm:307> INFO - Logfile is 'final_project.blg'
-[81] biber-darwin:322> INFO - === Wed May 10, 2023, 14:16:41
-[244] Utils.pm:320> ERROR - Cannot find 'final_project.bcf'!
-[244] Biber.pm:132> INFO - ERRORS: 1
+This is BibTeX, Version 0.99d (TeX Live 2020)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: final_project.aux
+The style file: ieeetr.bst
+Illegal, another \bibstyle command---line 124 of file final_project.aux
+ : \bibstyle
+ :          {aa}
+I'm skipping whatever remains of this command
+Database file #1: references.bib
+Repeated entry---line 179 of file references.bib
+ : @article{Wright_2010
+ :                     ,
+I'm skipping whatever remains of this entry
+You've used 14 entries,
+            1876 wiz_defined-function locations,
+            573 strings with 7343 characters,
+and the built_in function-call counts, 4695 in all, are:
+= -- 379
+> -- 345
+< -- 0
++ -- 121
+- -- 107
+* -- 418
+:= -- 727
+add.period$ -- 14
+call.type$ -- 14
+change.case$ -- 14
+chr.to.int$ -- 0
+cite$ -- 14
+duplicate$ -- 187
+empty$ -- 342
+format.name$ -- 107
+if$ -- 1088
+int.to.chr$ -- 0
+int.to.str$ -- 14
+missing$ -- 11
+newline$ -- 45
+num.names$ -- 11
+pop$ -- 36
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 168
+stack$ -- 0
+substring$ -- 256
+swap$ -- 97
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 29
+width$ -- 16
+write$ -- 134
+(There were 2 error messages)
